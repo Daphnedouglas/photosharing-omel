@@ -1,0 +1,528 @@
+.salon,
+.moment,
+.tea {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #6d3c52;
+  font-family: Inter, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(70% 42% at 8% 0%, #ffffff 0%, transparent 58%),
+    radial-gradient(46% 36% at 100% 100%, #fadcd5 0%, transparent 70%),
+    linear-gradient(180deg, #fff8f6 0%, #fdeeea 55%, #fadcd5 100%);
+}
+
+.salon {
+  padding: 34px 64px 22px;
+}
+
+.moment {
+  padding: 22px 36px 18px;
+}
+
+.salon__bar,
+.moment__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.moment__nav {
+  background: rgba(255, 252, 252, 0.92);
+  border-radius: 999px;
+  padding: 12px 16px 12px 28px;
+  box-shadow: 0 14px 40px rgba(90, 48, 60, 0.05);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.35rem;
+  font-weight: 560;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.brand__mark {
+  width: 18px;
+  height: 18px;
+  color: #c46b86;
+}
+
+.brand__salon {
+  font-family: Inter, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #6d3c52;
+}
+
+.brand__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6d3c52;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.account__login {
+  color: #3d3438;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.pill--dark,
+.pill--ghost {
+  border: 1.5px solid #6d3c52;
+  background: transparent;
+  color: #6d3c52;
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.pill--ghost {
+  padding: 12px 22px;
+}
+
+.pill--dark:hover,
+.pill--ghost:hover {
+  background: #6d3c52;
+  color: #fff;
+}
+
+.pill--wide {
+  min-width: 220px;
+  padding: 14px 36px;
+}
+
+.pill svg {
+  width: 16px;
+  height: 16px;
+}
+
+.salon__stage,
+.moment__stage {
+  flex: 1;
+  display: grid;
+  align-items: center;
+  gap: 20px;
+}
+
+.salon__stage {
+  grid-template-columns: minmax(340px, 0.92fr) minmax(420px, 1.08fr);
+  padding: 18px 0 8px;
+}
+
+.moment__stage {
+  grid-template-columns: minmax(460px, 1.08fr) minmax(340px, 0.92fr);
+  padding: 8px 28px 0 12px;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid #f1d5dc;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #6e5b62;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.kicker svg {
+  width: 12px;
+  height: 12px;
+}
+
+.salon h1,
+.moment h1,
+.tea h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 560;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+  color: #6d3c52;
+}
+
+.salon h1 {
+  margin-top: 22px;
+  font-size: clamp(3.6rem, 5.2vw, 4.8rem);
+}
+
+.moment h1 {
+  margin-top: 18px;
+  font-size: clamp(2.8rem, 3.5vw, 3.7rem);
+  white-space: nowrap;
+}
+
+.salon h1 em,
+.moment h1 em {
+  font-style: italic;
+  font-weight: 500;
+  color: #6d3c52;
+}
+
+.lede {
+  max-width: 38rem;
+  color: #765d67;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.salon .lede {
+  margin-top: 18px;
+}
+
+.moment .lede {
+  margin-top: 16px;
+  max-width: 34rem;
+}
+
+.lede__paw {
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+  vertical-align: -2px;
+  color: #6d3c52;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  color: #8a7e83;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+}
+
+.pager__bar {
+  width: 26px;
+  height: 7px;
+  border-radius: 999px;
+  background: #6d3c52;
+}
+
+.pager__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #eadfe2;
+}
+
+.salon__cta,
+.moment__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.skip {
+  color: #3f363a;
+  text-decoration: none;
+  font-size: 0.98rem;
+}
+
+.curators {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 34px;
+  color: #6d6368;
+  font-size: 0.92rem;
+}
+
+.faces {
+  display: flex;
+}
+
+.faces span {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  margin-right: -7px;
+  place-items: center;
+  border: 2px solid #fff7f6;
+  border-radius: 50%;
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.faces span:nth-child(1) {
+  background: #f0c3cf;
+  color: #7a3d52;
+}
+
+.faces span:nth-child(2) {
+  background: #e59aaf;
+  color: #fff;
+}
+
+.faces span:nth-child(3) {
+  background: #d7c4ef;
+  color: #5c4678;
+}
+
+.salon__collage img,
+.moment__stack img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.salon__collage img {
+  max-width: 640px;
+  margin-left: auto;
+}
+
+.moment__stack img {
+  max-width: 720px;
+}
+
+.moment__copy {
+  position: relative;
+  justify-self: start;
+}
+
+.moment__spark {
+  position: absolute;
+  top: -78px;
+  left: 28px;
+  width: 54px;
+  height: 54px;
+  color: #f3d5de;
+}
+
+.step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fadcd5;
+  color: #6d3c52;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+.step svg {
+  width: 12px;
+  height: 12px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 420px;
+  margin-top: 22px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, rgba(248, 232, 237, 0.95), rgba(255, 248, 249, 0.4));
+}
+
+.feature__icon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fadcd5;
+  color: #6d3c52;
+}
+
+.feature__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.feature strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.feature span {
+  color: #7a6e73;
+  font-size: 0.86rem;
+}
+
+.salon__foot,
+.moment__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  color: #8d8287;
+  font-size: 0.78rem;
+}
+
+.salon__links,
+.moment__links {
+  display: flex;
+  gap: 22px;
+}
+
+.moment__edition {
+  letter-spacing: 0.14em;
+}
+
+.tea {
+  padding: 34px 64px 22px;
+}
+
+.tea__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tea__volume {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fadcd5;
+  color: #6d3c52;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.tea__stage {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(320px, 0.86fr) minmax(420px, 1.14fr);
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.tea h1 {
+  margin-top: 22px;
+  color: #6d3c52;
+  font-size: clamp(3.4rem, 5vw, 4.6rem);
+}
+
+.tea__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.tea__chips span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #765d67;
+  font-size: 0.86rem;
+}
+
+.tea__row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.tea__row .pager {
+  margin-top: 0;
+}
+
+.tea__visual img {
+  display: block;
+  width: min(640px, 100%);
+  margin-left: auto;
+}
+
+.tea__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: #765d67;
+  font-size: 0.78rem;
+}
+
+.tea__legal {
+  display: flex;
+  gap: 16px;
+}
+
+.salon a:focus-visible,
+.moment a:focus-visible,
+.salon button:focus-visible,
+.moment button:focus-visible {
+  outline: 2px solid #6d3c52;
+  outline-offset: 3px;
+}
+
+@media (max-width: 980px) {
+  .salon,
+  .moment,
+  .tea {
+    padding: 20px;
+  }
+
+  .salon__stage,
+  .moment__stage,
+  .tea__stage {
+    grid-template-columns: 1fr;
+    padding: 12px 0;
+  }
+
+  .salon h1,
+  .moment h1 {
+    font-size: 3rem;
+    white-space: normal;
+  }
+
+  .moment__spark {
+    display: none;
+  }
+
+  .salon__foot,
+  .moment__foot,
+  .tea__foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pill,
+  .pill--dark,
+  .pill--ghost {
+    transition: none;
+  }
+}

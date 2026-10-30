@@ -1,0 +1,277 @@
+.portrait {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+  gap: 22px;
+  margin-top: 8px;
+  color: #6d3c52;
+}
+
+.portrait__back {
+  color: #6d3c52;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.portrait__frame {
+  position: relative;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #2a171c;
+}
+
+.portrait__frame > img,
+.portrait__film img,
+.portrait__who img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.portrait__frame > img {
+  height: min(68vh, 620px);
+}
+
+.portrait__date,
+.portrait__count,
+.portrait__chip {
+  border-radius: 999px;
+  background: rgba(109, 60, 82, 0.72);
+  color: #fff;
+  font-size: 0.75rem;
+}
+
+.portrait__date,
+.portrait__count {
+  position: absolute;
+  left: 14px;
+  padding: 6px 10px;
+}
+
+.portrait__date {
+  top: 14px;
+}
+
+.portrait__count {
+  bottom: 14px;
+}
+
+.portrait__arrow {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(109, 60, 82, 0.45);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-50%);
+}
+
+.portrait__arrow--prev {
+  left: 12px;
+}
+
+.portrait__arrow--next {
+  right: 12px;
+}
+
+.portrait__film {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.portrait__film a {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 50%;
+}
+
+.portrait__film a.is-on {
+  border-color: #6d3c52;
+}
+
+.portrait__film img {
+  height: 100%;
+}
+
+.portrait__film span {
+  position: absolute;
+  right: 4px;
+  bottom: 2px;
+  color: #fff;
+  font-size: 0.68rem;
+}
+
+.portrait__rail {
+  padding: 8px 4px 20px;
+}
+
+.portrait__flags {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.portrait__flags span,
+.portrait__chip {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fde8e4;
+  color: #6d3c52;
+  font-size: 0.75rem;
+}
+
+.portrait__author,
+.portrait__actions,
+.portrait__whispers,
+.portrait__composer,
+.portrait li,
+.portrait li > div > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.portrait__author {
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.portrait__who {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.portrait__who img,
+.portrait__dot {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.portrait__who strong,
+.portrait li strong {
+  display: block;
+}
+
+.portrait__who span span,
+.portrait li > div > span,
+.portrait__liked {
+  color: #765d67;
+  font-size: 0.78rem;
+}
+
+.portrait h1 {
+  margin-top: 16px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.portrait__rail > p {
+  margin-top: 8px;
+  color: #3c2a32;
+}
+
+.portrait__actions {
+  margin-top: 16px;
+}
+
+.portrait__actions button,
+.portrait li button,
+.portrait__composer button {
+  border: 0;
+  background: transparent;
+  color: #6d3c52;
+  font: inherit;
+  cursor: pointer;
+}
+
+.portrait__actions button.is-on {
+  color: #9a3048;
+}
+
+.portrait__whispers {
+  justify-content: space-between;
+  margin-top: 22px;
+}
+
+.portrait__whispers h2 {
+  font-size: 1.05rem;
+}
+
+.portrait__whispers span {
+  color: #765d67;
+  font-size: 0.8rem;
+}
+
+.portrait__whispers select,
+.portrait__composer input {
+  border: 0;
+  background: transparent;
+  color: #6d3c52;
+  font: inherit;
+}
+
+.portrait ul {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portrait li {
+  align-items: flex-start;
+  margin-top: 14px;
+}
+
+.portrait__dot {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  background: #fadcd5;
+  color: #6d3c52;
+  font-size: 0.8rem;
+}
+
+.portrait li p {
+  margin-top: 4px;
+}
+
+.portrait__composer {
+  margin-top: 16px;
+  padding: 8px 8px 8px 14px;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.portrait__composer input {
+  flex: 1;
+  outline: none;
+}
+
+.portrait__composer button {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: #6d3c52;
+  color: #fff;
+}
+
+@media (max-width: 980px) {
+  .portrait {
+    grid-template-columns: 1fr;
+  }
+}

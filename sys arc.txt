@@ -1,0 +1,26 @@
+Onboarding 1 → Onboarding 2 → Onboarding 3 → Login
+                                              ├──→ Forgot password ──→ (reset link sent) ──→ Login
+                                              └──→ Sign up ──→ Join / create clowder ──→ Home
+
+Login ──→ Home (Feed)
+           ├──→ Post detail ──→ Comments (add · edit · delete · reply)
+           │                └──→ Uploader profile
+           ├──→ Upload photo ──→ Add caption & tags ──→ (uploading to S3) ──→ Post detail
+           ├──→ Calendar (Month · Week · Year)
+           │       ├──→ Day detail ──→ Photo detail + Diary ──→ Edit diary
+           │       │              └──→ + Add photo to this day ──→ Upload photo
+           │       ├──→ Empty day ──→ Upload photo / Write diary note
+           │       └──→ Year in photos ──→ Month view
+           ├──→ Photostrip Studio
+           │       └──→ Pick photos ──→ Choose layout ──→ Decorate ──→ Confirm (popup)
+           │              ──→ (printing animation) ──→ Strip ready (popup)
+           │                     ├──→ Download PNG
+           │                     ├──→ Share to clowder ──→ Home
+           │                     └──→ Share via QR / Link ──→ Shared strip page (public)
+           ├──→ Search & filter ──→ Results (uploader · date · tags · comments) ──→ Post detail
+           └──→ Profile ──→ My posts · My strips ──→ Post detail
+                       ├──→ My clowders ──→ Clowder detail (members · join code)
+                       └──→ Settings ──→ Log out ──→ Login
+
+Sidebar nav (always visible): Feed · Calendar · Photostrip Studio · Search · Profile · [+ Upload]
+Top bar: clowder switcher (the clowder 🐾 ▾), search field, notifications (badge), avatar

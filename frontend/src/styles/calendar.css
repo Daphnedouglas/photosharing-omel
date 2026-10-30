@@ -1,0 +1,577 @@
+.cal,
+.shot,
+.deep {
+  margin-top: 8px;
+  color: #6d3c52;
+}
+
+.cal__top,
+.cal__month-head,
+.cal__filters,
+.day__head,
+.day__nav,
+.shot__top,
+.shot__more,
+.deep__who,
+.diary header,
+.diary footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cal__crumb,
+.cal__back,
+.shot__top a,
+.day__nav a {
+  color: #6d3c52;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.cal__crumb span::before {
+  content: "› ";
+}
+
+.cal h1,
+.year__folio h2,
+.day__empty h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 500;
+}
+
+.cal h1 {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+}
+
+.cal h1 span,
+.cal__pager,
+.cal__quiet,
+.cal__kicker,
+.day__card em,
+.day__card small,
+.year__grid em,
+.shot aside > p,
+.diary__sync {
+  color: #765d67;
+  font-size: 0.82rem;
+}
+
+.cal__switch,
+.cal__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cal__switch a,
+.cal__filters button,
+.cal__add,
+.day__actions a,
+.day__actions button,
+.year__folio button,
+.diary header button,
+.diary__choices button,
+.diary__privacy button,
+.diary footer button {
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #6d3c52;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cal__switch a,
+.cal__filters button,
+.day__actions button {
+  padding: 8px 12px;
+}
+
+.cal__switch a.is-on,
+.cal__filters button.is-on,
+.cal__add,
+.day__actions a,
+.year__folio button,
+.diary header button:last-child,
+.diary footer .is-save,
+.diary__choices button.is-on,
+.diary__privacy button.is-on {
+  background: #6d3c52;
+  color: #fff;
+}
+
+.cal__add,
+.day__actions a,
+.year__folio button {
+  padding: 10px 14px;
+}
+
+.cal__split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.cal__board {
+  padding: 16px;
+  border-radius: 28px;
+  background: #4a2744;
+  color: #fff6f4;
+}
+
+.cal__weekdays,
+.cal__cells {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.cal__weekdays {
+  margin-bottom: 8px;
+  color: #f3d5e4;
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.cal__cell,
+.cal__cells .is-out {
+  min-height: 78px;
+  padding: 6px;
+  border-radius: 14px;
+}
+
+.cal__cell button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cal__cells .is-out {
+  opacity: 0.4;
+}
+
+.cal__cell.is-selected {
+  outline: 2px solid #fadcd5;
+}
+
+.cal__cells img {
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin-top: 4px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cal__cells small,
+.cal__cells em {
+  display: block;
+  font-size: 0.68rem;
+  font-style: normal;
+}
+
+.cal__edition {
+  margin-top: 12px;
+  color: #f3d5e4;
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+}
+
+.cal__side,
+.cal__keepsake,
+.day__card,
+.day__notes,
+.year__grid a,
+.year__folio,
+.shot__polaroid,
+.shot__row article,
+.deep__card,
+.diary {
+  border-radius: 24px;
+  background: #fff;
+}
+
+.cal__side {
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(109, 60, 82, 0.05);
+}
+
+.cal__preview {
+  display: block;
+  margin-top: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cal__preview img,
+.day__card img,
+.year__grid img,
+.shot__polaroid img,
+.shot__row img,
+.deep__photo img,
+.week__card img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.cal__preview img {
+  height: 140px;
+  border-radius: 16px;
+}
+
+.cal__go {
+  display: block;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: #6d3c52;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+
+.cal__keepsake {
+  margin-top: 12px;
+  padding: 12px;
+  background: #fde8e4;
+}
+
+.cal__keepsake blockquote,
+.day__notes blockquote {
+  margin: 8px 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+}
+
+.week {
+  margin-top: 16px;
+}
+
+.week__head,
+.week__body {
+  display: grid;
+  grid-template-columns: 64px repeat(7, minmax(0, 1fr));
+}
+
+.week__head span,
+.week__col {
+  min-height: 72px;
+  padding: 8px;
+  border-top: 1px solid #f3e4e6;
+}
+
+.week__head .is-today,
+.week__col.is-today {
+  background: #fff1f3;
+}
+
+.week__hours span,
+.week__col {
+  height: 86px;
+}
+
+.week__hours span {
+  color: #765d67;
+  font-size: 0.72rem;
+}
+
+.week__card {
+  display: block;
+  margin-top: 4px;
+  padding: 6px;
+  border-radius: 12px;
+  background: #fde8e4;
+  color: inherit;
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.week__card img {
+  height: 42px;
+  border-radius: 8px;
+}
+
+.week__card.is-dark {
+  background: #241418;
+  color: #fff6f4;
+}
+
+.year__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.year__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.year__grid a {
+  position: relative;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
+
+.year__grid img {
+  height: 140px;
+}
+
+.year__grid span,
+.year__grid strong,
+.year__grid em,
+.year__grid small {
+  display: block;
+  padding: 0 10px;
+}
+
+.year__grid a.is-current {
+  outline: 2px solid #6d3c52;
+}
+
+.year__folio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  padding: 18px;
+  background: #fde8e4;
+}
+
+.day__grid,
+.shot__row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.day__card,
+.shot__row article {
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
+
+.day__card img,
+.shot__row img {
+  height: 160px;
+}
+
+.day__card strong,
+.day__card em,
+.day__card small,
+.shot__row strong,
+.shot__row span {
+  display: block;
+  padding: 0 10px;
+}
+
+.day__card small,
+.shot__row span {
+  padding-bottom: 12px;
+}
+
+.day__card span,
+.shot__polaroid > span {
+  display: inline-block;
+  margin: 8px 10px 0;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #fde8e4;
+  color: #6d3c52;
+  font-size: 0.72rem;
+}
+
+.day__notes {
+  grid-column: span 2;
+  padding: 16px;
+  background: #fde8e4;
+}
+
+.day__empty {
+  margin-top: 24px;
+  padding: 28px;
+  border-radius: 24px;
+  background: #fff;
+}
+
+.day__empty a {
+  display: inline-block;
+  margin: 12px 8px 0 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #6d3c52;
+  color: #fff;
+  text-decoration: none;
+}
+
+.day__nav {
+  margin-top: 18px;
+}
+
+.shot__layout,
+.deep__card {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.shot__polaroid,
+.deep__card {
+  padding: 16px;
+  box-shadow: 0 16px 40px rgba(109, 60, 82, 0.06);
+}
+
+.shot__polaroid img,
+.deep__photo img {
+  height: 420px;
+  border-radius: 18px;
+}
+
+.shot aside ul,
+.deep aside {
+  padding: 0;
+  list-style: none;
+}
+
+.shot li {
+  margin-top: 12px;
+}
+
+.shot form,
+.deep form {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.shot input,
+.deep input,
+.diary textarea {
+  width: 100%;
+  border: 0;
+  border-radius: 999px;
+  background: #fff6f4;
+  font: inherit;
+  padding: 10px 12px;
+}
+
+.shot form button,
+.deep form button {
+  border: 0;
+  border-radius: 999px;
+  background: #6d3c52;
+  color: #fff;
+  cursor: pointer;
+}
+
+.shot__row {
+  margin-top: 8px;
+}
+
+.deep {
+  position: relative;
+}
+
+.deep__photo {
+  position: relative;
+}
+
+.deep__arrow {
+  position: absolute;
+  top: 46%;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(109, 60, 82, 0.45);
+  color: #fff;
+  text-decoration: none;
+}
+
+.deep__arrow--prev {
+  left: 24px;
+}
+
+.deep__arrow--next {
+  right: 24px;
+}
+
+.deep__entry {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  background: #fff6f4;
+}
+
+.deep__entry button {
+  margin-top: 8px;
+  border: 0;
+  border-radius: 999px;
+  background: #fde8e4;
+  color: #6d3c52;
+  cursor: pointer;
+}
+
+.diary {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  width: min(420px, 100%);
+  height: 100vh;
+  padding: 18px;
+  overflow: auto;
+  border-radius: 0;
+  box-shadow: -20px 0 50px rgba(109, 60, 82, 0.16);
+}
+
+.diary textarea {
+  min-height: 140px;
+  margin-top: 8px;
+  border-radius: 16px;
+}
+
+.diary__choices,
+.diary__privacy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.diary__choices button,
+.diary__privacy button,
+.diary footer button,
+.diary header button {
+  padding: 8px 12px;
+}
+
+@media (max-width: 1000px) {
+  .cal__split,
+  .year__grid,
+  .day__grid,
+  .shot__layout,
+  .shot__row,
+  .deep__card,
+  .week__head,
+  .week__body {
+    grid-template-columns: 1fr 1fr;
+  }
+}

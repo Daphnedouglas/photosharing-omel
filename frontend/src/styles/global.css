@@ -1,0 +1,158 @@
+:root {
+  color: #1c1917;
+  background: #f6f3ee;
+  font-family: "Segoe UI", sans-serif;
+  line-height: 1.45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.stub,
+.map {
+  max-width: 760px;
+  padding: 48px 28px 80px;
+}
+
+.stub__group {
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+}
+
+.stub__flow,
+.stub__note {
+  margin-top: 12px;
+  max-width: 42rem;
+}
+
+.stub__note {
+  color: #57534e;
+}
+
+.stub__facts {
+  margin: 28px 0 0;
+}
+
+.stub__facts div {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid #e7e0d6;
+}
+
+.stub__facts dt {
+  color: #78716c;
+}
+
+.stub__facts dd {
+  margin: 0;
+}
+
+.stub__back {
+  margin-top: 28px;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100vh;
+}
+
+.shell__side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 18px;
+  border-right: 1px solid #e7e0d6;
+}
+
+.wordmark {
+  font-family: Georgia, serif;
+  font-size: 1.6rem;
+  text-decoration: none;
+}
+
+.shell__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.shell__nav a,
+.shell__map,
+.shell__top a {
+  text-decoration: none;
+}
+
+.shell__nav a.active {
+  text-decoration: underline;
+}
+
+.nav-upload {
+  margin-top: 12px;
+}
+
+.shell__map {
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: #78716c;
+}
+
+.shell__top {
+  display: flex;
+  justify-content: flex-end;
+  gap: 18px;
+  padding: 18px 28px;
+  border-bottom: 1px solid #e7e0d6;
+}
+
+.map__group {
+  margin-top: 36px;
+}
+
+.map__group h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.map__group ul {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.map__group li {
+  display: grid;
+  gap: 2px;
+  padding: 12px 0;
+  border-top: 1px solid #e7e0d6;
+}
+
+.map__group code,
+.map__group span {
+  color: #57534e;
+  font-size: 0.9rem;
+}

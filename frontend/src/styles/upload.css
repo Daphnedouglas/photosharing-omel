@@ -1,0 +1,432 @@
+.vault {
+  margin-top: 18px;
+  color: #6d3c52;
+}
+
+.vault__crumb {
+  display: flex;
+  gap: 8px;
+  color: #765d67;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.vault__crumb a {
+  color: #6d3c52;
+  text-decoration: none;
+}
+
+.vault h1 {
+  margin-top: 8px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.8rem, 2.4vw, 2.3rem);
+  font-style: italic;
+  font-weight: 500;
+}
+
+.vault__intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.vault__lede {
+  max-width: 520px;
+  margin-top: 6px;
+  color: #765d67;
+  font-size: 0.92rem;
+}
+
+.vault__drafts {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #fde8e4;
+  color: #6d3c52;
+  font-size: 0.82rem;
+}
+
+.vault__grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.86fr) minmax(360px, 1.14fr);
+  gap: 22px;
+  margin-top: 18px;
+}
+
+.vault__drop,
+.vault__panel {
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(109, 60, 82, 0.05);
+}
+
+.vault__drop {
+  padding: 28px 26px 22px;
+  text-align: center;
+}
+
+.vault__drop.is-over {
+  outline: 2px solid #6d3c52;
+  outline-offset: 4px;
+}
+
+.vault__mark {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  margin: 8px auto 16px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fde8e4;
+  color: #6d3c52;
+}
+
+.vault__drop h2,
+.vault__quote {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.vault__drop h2 {
+  font-size: 1.55rem;
+}
+
+.vault__drop p {
+  max-width: 320px;
+  margin: 8px auto 0;
+  color: #765d67;
+  font-size: 0.9rem;
+}
+
+.vault__drop > button,
+.vault__publish > button:first-child {
+  border: 0;
+  border-radius: 999px;
+  background: #6d3c52;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 140ms ease;
+}
+
+.vault__drop > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 12px 22px;
+}
+
+.vault__drop > button:hover,
+.vault__publish > button:first-child:hover:not(:disabled) {
+  background: #6d3c52;
+}
+
+.vault__fine {
+  margin-top: 16px;
+  font-size: 0.78rem;
+}
+
+.vault__hint {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fde8e4;
+  color: #6d3c52;
+  font-size: 0.75rem;
+}
+
+.vault__quote {
+  margin-top: 18px;
+  color: #6d3c52;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+.vault__panel {
+  padding: 18px 18px 16px;
+}
+
+.vault__panel-head,
+.vault__caption > span,
+.vault__publish {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.vault__panel h2 {
+  font-size: 1.05rem;
+}
+
+.vault__panel h2 span,
+.vault__caption > span span {
+  margin-left: 8px;
+  color: #765d67;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.vault__panel h2 span {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #fde8e4;
+  color: #6d3c52;
+}
+
+.vault__panel-head > button,
+.vault__discard,
+.vault__add,
+.vault__tags button {
+  border: 0;
+  background: transparent;
+  color: #6d3c52;
+  font: inherit;
+  cursor: pointer;
+}
+
+.vault__portraits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.vault__shot {
+  position: relative;
+  height: 148px;
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.vault__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vault__shot > button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(109, 60, 82, 0.55);
+  color: #fff;
+  cursor: pointer;
+}
+
+.vault__busy {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 8px;
+  background: rgba(109, 60, 82, 0.62);
+  color: #fff;
+}
+
+.vault__ring {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(#fadcd5 var(--progress), rgba(255, 255, 255, 0.28) 0);
+}
+
+.vault__ring span,
+.vault__busy em {
+  font-size: 0.62rem;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.vault__ring span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: #2a171c;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.vault figcaption {
+  margin-top: 6px;
+  text-align: center;
+}
+
+.vault figcaption strong,
+.vault figcaption span {
+  display: block;
+}
+
+.vault figcaption span,
+.vault__empty,
+.vault__rows span span,
+.vault__strip {
+  color: #765d67;
+  font-size: 0.75rem;
+}
+
+.vault__caption {
+  display: block;
+  margin-top: 16px;
+}
+
+.vault__caption textarea,
+.vault__tags input,
+.vault__rows select {
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  background: #fff6f4;
+  color: #6d3c52;
+  font: inherit;
+}
+
+.vault__caption textarea {
+  min-height: 72px;
+  margin-top: 8px;
+  padding: 12px;
+  resize: vertical;
+}
+
+.vault__caption textarea:focus,
+.vault__tags input:focus,
+.vault__rows select:focus {
+  outline: 2px solid #6d3c52;
+}
+
+.vault__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.vault__tags button,
+.vault__add,
+.vault__tags input {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fde8e4;
+}
+
+.vault__tags input {
+  width: 110px;
+}
+
+.vault__rows {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.vault__rows label,
+.vault__rows > div {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: #fff6f4;
+}
+
+.vault__rows strong,
+.vault__rows span span {
+  display: block;
+}
+
+.vault__rows select {
+  width: auto;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fde8e4;
+  color: #6d3c52;
+}
+
+.vault__switch {
+  width: 42px;
+  height: 24px;
+  border: 0;
+  border-radius: 999px;
+  background: #e7d5d8;
+  cursor: pointer;
+}
+
+.vault__switch::after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin-left: 3px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.vault__switch.is-on {
+  background: #6d3c52;
+}
+
+.vault__switch.is-on::after {
+  margin-left: 21px;
+}
+
+.vault__publish {
+  margin-top: 16px;
+}
+
+.vault__publish > button:first-child {
+  flex: 1;
+  padding: 14px 18px;
+}
+
+.vault__publish > button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.vault__strip {
+  display: block;
+  margin-top: 12px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.vault__empty {
+  margin-top: 16px;
+}
+
+@media (max-width: 1100px) {
+  .vault__grid,
+  .vault__portraits {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .vault__grid,
+  .vault__portraits,
+  .vault__rows label,
+  .vault__rows > div {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vault__drop > button,
+  .vault__publish > button:first-child {
+    transition: none;
+  }
+}

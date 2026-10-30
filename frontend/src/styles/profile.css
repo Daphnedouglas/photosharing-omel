@@ -1,0 +1,261 @@
+.salon {
+  margin-top: 8px;
+  color: #6d3c52;
+}
+
+.salon__crumb,
+.salon__section-head,
+.salon__archive,
+.salon__foot,
+.salon__recent a > span:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.salon__crumb {
+  color: #765d67;
+  font-size: 0.78rem;
+}
+
+.salon__crumb p span {
+  margin-left: 12px;
+}
+
+.salon__crumb a,
+.salon__section-head a,
+.salon__archive button,
+.salon__foot button {
+  border: 0;
+  background: none;
+  color: #6d3c52;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.salon__crumb p:last-child span,
+.salon__since span,
+.salon__edit {
+  margin-left: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #fde8e4;
+  color: #6d3c52;
+  font-size: 0.75rem;
+}
+
+.salon__hero,
+.salon__panels section,
+.salon__stats p,
+.salon__recent a {
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(109, 60, 82, 0.04);
+}
+
+.salon__hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+  padding: 18px;
+}
+
+.salon__hero img {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 68% center;
+}
+
+.salon h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(1.8rem, 2.5vw, 2.3rem);
+  font-weight: 500;
+}
+
+.salon__handle,
+.salon__quiet,
+.salon__space span span,
+.salon__archive span,
+.salon__foot p {
+  color: #765d67;
+  font-size: 0.82rem;
+}
+
+.salon__since {
+  margin-top: 8px;
+}
+
+.salon__edit {
+  margin-left: auto;
+  text-decoration: none;
+}
+
+.salon__stats,
+.salon__panels,
+.salon__recent,
+.salon__space {
+  display: grid;
+  gap: 12px;
+}
+
+.salon__stats {
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 14px;
+}
+
+.salon__stats p {
+  padding: 16px;
+  text-align: center;
+}
+
+.salon__stats strong {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.salon__stats span {
+  color: #765d67;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.salon__panels {
+  grid-template-columns: 0.9fr 1.1fr;
+  margin-top: 14px;
+}
+
+.salon__panels section {
+  padding: 16px;
+}
+
+.salon__section-head {
+  margin-top: 18px;
+}
+
+.salon h2 {
+  font-size: 1.05rem;
+}
+
+.salon dl {
+  margin: 12px 0 0;
+}
+
+.salon dl div {
+  padding: 10px 0;
+  border-top: 1px solid #f3e4e6;
+}
+
+.salon dt {
+  color: #765d67;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.salon dd {
+  margin: 2px 0 0;
+}
+
+.salon dd a {
+  color: inherit;
+}
+
+.salon__space {
+  grid-template-columns: 1fr 1fr;
+  margin-top: 12px;
+}
+
+.salon__space a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+  background: #fff6f4;
+  color: inherit;
+  text-decoration: none;
+}
+
+.salon__space a > span:first-child {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fde8e4;
+  color: #6d3c52;
+}
+
+.salon__space strong,
+.salon__space span span {
+  display: block;
+}
+
+.salon__recent {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 12px;
+}
+
+.salon__recent a {
+  position: relative;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
+
+.salon__recent img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.salon__when {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(109, 60, 82, 0.55);
+  color: #fff;
+  font-size: 0.72rem;
+}
+
+.salon__recent a > span:last-child {
+  padding: 10px 12px 12px;
+}
+
+.salon__foot {
+  margin-top: 18px;
+  color: #765d67;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 980px) {
+  .salon__stats,
+  .salon__panels,
+  .salon__recent,
+  .salon__space {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .salon__hero,
+  .salon__stats,
+  .salon__panels,
+  .salon__recent,
+  .salon__space,
+  .salon__crumb,
+  .salon__foot {
+    grid-template-columns: 1fr;
+    flex-wrap: wrap;
+  }
+}

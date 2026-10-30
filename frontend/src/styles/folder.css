@@ -1,0 +1,396 @@
+.club {
+  margin-top: 16px;
+  color: #6d3c52;
+}
+
+.club__banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: #2a171c;
+  color: #fff6f4;
+  font-size: 0.92rem;
+}
+
+.club__banner button,
+.club__layout button,
+.club__filters button,
+.club__select,
+.club__share-btn,
+.club__kebab,
+.club__check,
+.club__add button,
+.club__menu button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.club__banner button {
+  color: #fadcd5;
+  letter-spacing: 0.06em;
+}
+
+.club__crumb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  color: #765d67;
+  font-size: 0.82rem;
+}
+
+.club__crumb a,
+.club__capsule a {
+  color: #6d3c52;
+  text-decoration: none;
+}
+
+.club h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.club__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.club__head p,
+.club__meta span,
+.club__add span span,
+.club__capsule p {
+  color: #765d67;
+  font-size: 0.82rem;
+}
+
+.club__share {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.club__faces {
+  display: flex;
+}
+
+.club__faces i {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  margin-left: -6px;
+  place-items: center;
+  border: 2px solid #fff8f6;
+  border-radius: 50%;
+  background: #fadcd5;
+  color: #6d3c52;
+  font-size: 0.68rem;
+  font-style: normal;
+}
+
+.club__faces i:first-child {
+  margin-left: 0;
+}
+
+.club__faces i:nth-child(3) {
+  background: #6d3c52;
+  color: #fff;
+}
+
+.club__share-btn,
+.club__select,
+.club__sort,
+.club__layout,
+.club__filters button {
+  border-radius: 999px;
+  background: #fff;
+}
+
+.club__share-btn {
+  padding: 8px 14px;
+  background: #fde8e4;
+  color: #6d3c52;
+}
+
+.club__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.club__layout,
+.club__filters {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+}
+
+.club__layout button,
+.club__filters button,
+.club__select {
+  padding: 7px 12px;
+  border-radius: 999px;
+  color: #765d67;
+}
+
+.club__layout button.is-on,
+.club__filters button.is-on,
+.club__select.is-on {
+  background: #6d3c52;
+  color: #fff;
+}
+
+.club__sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  padding: 7px 12px;
+  color: #765d67;
+}
+
+.club__sort select {
+  border: 0;
+  background: transparent;
+  color: #6d3c52;
+  font: inherit;
+}
+
+.club__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.club__grid article {
+  position: relative;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(109, 60, 82, 0.05);
+}
+
+.club__grid article.is-picked {
+  outline: 2px solid #6d3c52;
+}
+
+.club__shot {
+  position: relative;
+  height: 210px;
+  margin: 8px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.club__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.club__shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.club__new,
+.club__series {
+  position: absolute;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.72rem;
+}
+
+.club__new {
+  top: 8px;
+  left: 8px;
+  padding: 3px 8px;
+  background: #6d3c52;
+}
+
+.club__series {
+  bottom: 8px;
+  left: 8px;
+  padding: 4px 8px;
+  background: rgba(109, 60, 82, 0.72);
+}
+
+.club__kebab,
+.club__check {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(109, 60, 82, 0.55);
+  color: #fff;
+}
+
+.club__check {
+  left: 8px;
+  right: auto;
+  border: 1.5px solid #fff;
+  background: transparent;
+}
+
+.club__check.is-on {
+  background: #6d3c52;
+}
+
+.club__menu {
+  position: absolute;
+  top: 40px;
+  right: 8px;
+  z-index: 2;
+  display: grid;
+  min-width: 180px;
+  padding: 8px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 16px 40px rgba(109, 60, 82, 0.16);
+  text-align: left;
+}
+
+.club__menu button,
+.club__menu a {
+  padding: 8px 10px;
+  border-radius: 10px;
+  color: #6d3c52;
+  text-align: left;
+  text-decoration: none;
+}
+
+.club__menu a {
+  background: #fde8e4;
+  color: #6d3c52;
+}
+
+.club__menu .is-danger {
+  color: #9a3048;
+}
+
+.club__meta {
+  display: grid;
+  gap: 2px;
+  padding: 4px 12px 12px;
+}
+
+.club__meta input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1.5px solid #6d3c52;
+  font: inherit;
+  font-weight: 600;
+}
+
+.club__grid.is-list {
+  grid-template-columns: 1fr;
+}
+
+.club__grid.is-list article {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+}
+
+.club__grid.is-list .club__shot {
+  height: 110px;
+}
+
+.club__foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.club__add,
+.club__capsule {
+  border-radius: 22px;
+}
+
+.club__add {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  background: #fff;
+}
+
+.club__add button {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fde8e4;
+  color: #6d3c52;
+  font-size: 1.3rem;
+}
+
+.club__add strong,
+.club__add span span {
+  display: block;
+}
+
+.club__capsule {
+  padding: 16px;
+  background: #241418;
+  color: #fff6f4;
+}
+
+.club__capsule p {
+  color: #e7c9d0;
+  letter-spacing: 0.12em;
+}
+
+.club__capsule blockquote {
+  margin: 10px 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.club__capsule div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.78rem;
+}
+
+.club__capsule a {
+  color: #fadcd5;
+}
+
+@media (max-width: 1100px) {
+  .club__grid,
+  .club__foot {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .club__grid,
+  .club__foot,
+  .club__grid.is-list article {
+    grid-template-columns: 1fr;
+  }
+}
