@@ -1,0 +1,553 @@
+.settings {
+  --settings-max: 1100px;
+  max-width: var(--settings-max);
+  margin: 0 auto;
+  padding: 32px 24px 16px;
+  color: var(--plum);
+}
+
+.settings ~ .omel-toast,
+.desk__panel .omel-toast {
+  position: fixed;
+  z-index: 70;
+  bottom: 24px;
+  left: 50%;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  width: min(420px, calc(100% - 32px));
+  padding: 14px 16px;
+  border-left: 3px solid var(--berry);
+  border-radius: 12px;
+  background: var(--charcoal);
+  color: var(--blush);
+  transform: translateX(-50%);
+}
+
+.desk__panel .omel-toast p {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 15px;
+}
+
+.settings__title {
+  margin: 0;
+  color: var(--plum);
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.settings__lede {
+  margin: 8px 0 0;
+  max-width: 42rem;
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.settings__layout {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  margin-top: 32px;
+}
+
+.settings__nav {
+  position: sticky;
+  top: 16px;
+  display: grid;
+  gap: 4px;
+}
+
+.settings__nav a {
+  display: block;
+  padding: 10px 12px 10px 14px;
+  border-left: 3px solid transparent;
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.settings__nav a:hover {
+  color: var(--plum);
+}
+
+.settings__nav a[aria-current="true"] {
+  border-left-color: var(--wine);
+  color: var(--wine);
+}
+
+.settings__nav a:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 2px;
+}
+
+.settings__stack {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+
+.settings__card {
+  padding: 24px;
+  border: 1px solid var(--blush);
+  border-radius: 20px;
+  background: rgb(from white r g b / 0.92);
+}
+
+.settings__card h2 {
+  margin: 0;
+  color: var(--plum);
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.settings__card-desc {
+  margin: 6px 0 0;
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.settings__rows {
+  display: grid;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.settings__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px 24px;
+  align-items: center;
+}
+
+.settings__row--stack {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+.settings__copy {
+  min-width: 0;
+}
+
+.settings__label {
+  margin: 0;
+  color: var(--plum);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.settings__help {
+  margin: 4px 0 0;
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.settings__error {
+  margin: 6px 0 0;
+  color: var(--berry);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.settings__control {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.settings__field {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+}
+
+.settings__field input,
+.settings__field textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid var(--blush);
+  border-radius: 12px;
+  background: white;
+  color: var(--plum);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.settings__field textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.settings__field input:focus-visible,
+.settings__field textarea:focus-visible,
+.settings__btn:focus-visible,
+.settings__ghost:focus-visible,
+.settings__link:focus-visible,
+.settings__switch:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 2px;
+}
+
+.settings__field input[aria-invalid="true"],
+.settings__field textarea[aria-invalid="true"] {
+  border-color: var(--berry);
+}
+
+.settings__counter {
+  justify-self: end;
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.settings__media {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.settings__avatar,
+.settings__cover {
+  display: block;
+  object-fit: cover;
+  background: color-mix(in srgb, var(--blush) 55%, white);
+}
+
+.settings__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
+
+.settings__cover {
+  width: 160px;
+  height: 72px;
+  border-radius: 12px;
+}
+
+.settings__media-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.settings__btn,
+.settings__ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.settings__btn {
+  border: 0;
+  background: linear-gradient(var(--wine), var(--berry));
+  color: white;
+}
+
+.settings__btn--danger {
+  background: var(--wine);
+  color: white;
+}
+
+.settings--goodbye {
+  max-width: 640px;
+  padding-top: 72px;
+}
+
+.settings .picker {
+  display: grid;
+  gap: 6px;
+  min-width: min(280px, 100%);
+}
+
+.settings .picker__label {
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.settings .picker__button {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--blush);
+  border-radius: 12px;
+  background: white;
+  color: var(--plum);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.picker-menu {
+  position: fixed;
+  z-index: 80;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border: 1px solid var(--blush);
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 12px 28px rgb(from var(--plum) r g b / 0.16);
+}
+
+.picker-menu li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: var(--plum);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.picker-menu li.is-active,
+.picker-menu li[aria-selected="true"] {
+  background: color-mix(in srgb, var(--blush) 55%, white);
+}
+
+.settings__btn:disabled,
+.settings__ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.settings__ghost {
+  border: 1px solid var(--blush);
+  background: white;
+  color: var(--plum);
+}
+
+.settings__link {
+  color: var(--wine);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.settings__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--blush);
+}
+
+.settings__switch {
+  position: relative;
+  width: 44px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--mauve) 35%, white);
+  cursor: pointer;
+}
+
+.settings__switch[aria-checked="true"] {
+  background: var(--wine);
+}
+
+.settings__switch span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  transform: translateX(0);
+  transition: transform 180ms ease;
+}
+
+.settings__switch[aria-checked="true"] span {
+  transform: translateX(18px);
+}
+
+.settings__meter {
+  display: grid;
+  gap: 6px;
+  width: min(220px, 100%);
+}
+
+.settings__meter-bar {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--blush) 70%, white);
+}
+
+.settings__meter-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--wine);
+  transform-origin: left center;
+  transition: transform 180ms ease;
+}
+
+.settings__meter-label {
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.settings__warn {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--blush) 55%, white);
+  color: var(--wine);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.settings__ask {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: color-mix(in srgb, var(--plum) 45%, transparent);
+}
+
+.settings__ask > div {
+  width: min(420px, 100%);
+  padding: 24px;
+  border-radius: 20px;
+  background: white;
+  color: var(--plum);
+  box-shadow: 0 18px 40px rgb(from var(--plum) r g b / 0.22);
+}
+
+.settings__ask h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.settings__ask p {
+  margin: 8px 0 0;
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.settings__ask-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .settings__switch span,
+  .settings__meter-bar i {
+    transition: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .settings {
+    padding: 24px 16px 16px;
+  }
+
+  .settings__layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .settings__nav {
+    top: 0;
+    z-index: 5;
+    display: flex;
+    gap: 8px;
+    padding: 8px 0 12px;
+    overflow-x: auto;
+    background: color-mix(in srgb, var(--blush) 30%, white);
+    scrollbar-width: thin;
+  }
+
+  .settings__nav a {
+    flex: none;
+    padding: 8px 14px;
+    border: 1px solid var(--blush);
+    border-left-width: 1px;
+    border-radius: 999px;
+    background: white;
+    white-space: nowrap;
+  }
+
+  .settings__nav a[aria-current="true"] {
+    border-color: var(--wine);
+    background: color-mix(in srgb, var(--blush) 55%, white);
+  }
+
+  .settings__row {
+    grid-template-columns: 1fr;
+  }
+
+  .settings__control {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .settings__title {
+    font-size: 36px;
+  }
+
+  .settings__media {
+    grid-template-columns: 1fr;
+  }
+}

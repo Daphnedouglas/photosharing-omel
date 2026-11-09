@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import BackButton from "../../components/BackButton";
+import { Icon } from "../../components/Icons";
 import "../../styles/calendar.css";
 import { dayPhotos, diaryText } from "./shared";
 
@@ -40,14 +42,14 @@ export default function PhotoPage() {
   const [draft, setDraft] = useState(diaryText);
   const [mood, setMood] = useState("Euphoric");
   const [privacy, setPrivacy] = useState("clowder");
-  const [saved, setSaved] = useState("Last saved 2 min ago · All changes synced");
+  const [saved, setSaved] = useState("Not synced. This diary stays on this device.");
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState(pictureComments);
   const withDiary = photo.diary;
 
   function saveEntry() {
     setEntry(draft);
-    setSaved("Saved just now · All changes synced");
+    setSaved("Saved on this device. Nothing was sent.");
     setEditing(false);
   }
 
@@ -63,7 +65,7 @@ export default function PhotoPage() {
     return (
       <section className="shot">
         <div className="shot__top">
-          <Link to={`/calendar/${date}`}>← Back to Clowder Feed</Link>
+          <BackButton to={`/calendar/${date}`} label="Back to Clowder Feed" />
           <span>Salon memory #842</span>
         </div>
         <div className="shot__layout">
@@ -74,7 +76,7 @@ export default function PhotoPage() {
           </div>
           <aside>
             <h2>{photo.who}</h2>
-            <p>In your clowder · {photo.time}</p>
+            <p>In your clowder, {photo.time}</p>
             <p className="shot__tags">#brunch #weekend #clowder #salon</p>
             <h3>Comments ({comments.length})</h3>
             <ul>
@@ -94,7 +96,7 @@ export default function PhotoPage() {
         </div>
         <div className="shot__more">
           <h2>More from this day</h2>
-          <Link to={`/calendar/${date}`}>View calendar roll →</Link>
+          <Link to={`/calendar/${date}`}>View calendar roll</Link>
         </div>
         <div className="shot__row">
           {moreFromDay.map((item) => (
@@ -120,13 +122,13 @@ export default function PhotoPage() {
           <Link to={`/calendar/${date}/tea-whiskers`} className="deep__arrow deep__arrow--next" aria-label="Next photo">
             ›
           </Link>
-          <p>Photo 1 of 6 · Leica M6 · 35mm</p>
+          <p>Photo 1 of 6, Leica M6, 35mm</p>
           <blockquote>“Pearls before noon are strictly mandatory, darling.”</blockquote>
         </div>
         <aside>
           <div className="deep__who">
             <strong>Duchess Mimi</strong>
-            <span>Paris Salon · 10:24 AM · 16 Oct</span>
+            <span>Paris Salon, 10:24 AM, 16 Oct</span>
             <Link to={`/calendar/${date}`} aria-label="Close">
               ×
             </Link>
@@ -140,7 +142,7 @@ export default function PhotoPage() {
               Edit
             </button>
           </div>
-          <p>♡ 14 · 28 · 9</p>
+          <p><Icon name="heart" /> 14, 28, 9</p>
           <h2>Clowder Notes</h2>
           <p>
             <strong>Minx</strong> The pearls are giving high fashion royalty.
@@ -167,7 +169,7 @@ export default function PhotoPage() {
           </header>
           <p className="diary__memory">
             Friday, 16 October 2026
-            <span>Salon de Paris · Chambre Privée</span>
+            <span>Salon de Paris, Chambre Privée</span>
           </p>
           <label>
             Dear diary,

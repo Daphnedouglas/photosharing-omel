@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import BackButton from "../../components/BackButton";
+import { Icon } from "../../components/Icons";
 import "../../styles/post.css";
 
 export const meta = {
@@ -21,7 +23,7 @@ const reel = [
     src: "/post/pearly.png",
     title: "Pearly White",
     text: "Hand-strung heirloom freshwater pearls, sourced exclusively for tonight’s salon gathering. Velvet cushion warmth meets autumn dusk.",
-    when: "Oct 16 · 6:42 PM",
+    when: "Oct 16, 6:42 PM",
     date: "Oct 16",
     place: "Mimi at Café Terrace",
     likes: 28,
@@ -31,7 +33,7 @@ const reel = [
     src: "/home/pol-cleo.png",
     title: "Rose Chamber",
     text: "A philosophical rose, kept for the evening sitting. The clowder agrees the velvet parlor is the only proper backdrop.",
-    when: "Oct 15 · Salon",
+    when: "Oct 15, Salon",
     date: "Oct 15",
     place: "Cleo in the Rose Chamber",
     likes: 24,
@@ -41,7 +43,7 @@ const reel = [
     src: "/folder/minx.png",
     title: "Twilight Series",
     text: "A quiet moment before the evening salon begins. The terrace keeps the last of the light.",
-    when: "Yesterday · Terrace",
+    when: "Yesterday, Terrace",
     date: "Oct 16",
     place: "Minx on the Terrace",
     likes: 31,
@@ -52,7 +54,7 @@ const reel = [
     src: "/folder/jasper.png",
     title: "Library Parlor",
     text: "Jasper has claimed the gilt chair and will not be moved until the whispers are finished.",
-    when: "Oct 12 · Library",
+    when: "Oct 12, Library",
     date: "Oct 12",
     place: "Jasper in the Library",
     likes: 42,
@@ -125,23 +127,21 @@ export default function PostDetailPage() {
   return (
     <section className="portrait">
       <div className="portrait__stage">
-        <Link to="/folders/brunch-club" className="portrait__back">
-          ← Back to Brunch Club
-        </Link>
+        <BackButton to="/albums" label="Back to Albums" />
         <div className="portrait__frame">
           <img src={portrait.src} alt="" style={{ objectPosition: portrait.position || "center" }} />
           <span className="portrait__date">{portrait.date}</span>
-          <Link to={`/posts/${previous.id}`} className="portrait__arrow portrait__arrow--prev" aria-label="Previous portrait">
+          <Link to={`/posts/${previous.id}`} className="portrait__arrow portrait__arrow--prev" aria-label="Previous photo">
             ‹
           </Link>
-          <Link to={`/posts/${next.id}`} className="portrait__arrow portrait__arrow--next" aria-label="Next portrait">
+          <Link to={`/posts/${next.id}`} className="portrait__arrow portrait__arrow--next" aria-label="Next photo">
             ›
           </Link>
           <p className="portrait__count">
-            Portrait {index + 1} of {reel.length} · {portrait.place}
+            Photo {index + 1} of {reel.length}, {portrait.place}
           </p>
         </div>
-        <div className="portrait__film" aria-label="Portraits in this collection">
+        <div className="portrait__film" aria-label="Photos in this collection">
           {reel.map((item, itemIndex) => (
             <Link key={item.id} to={`/posts/${item.id}`} className={item.id === portrait.id ? "is-on" : undefined} aria-label={item.title}>
               <img src={item.src} alt="" style={{ objectPosition: item.position || "center" }} />
@@ -153,7 +153,7 @@ export default function PostDetailPage() {
 
       <aside className="portrait__rail">
         <div className="portrait__flags">
-          <span>Private Circle Sync</span>
+          <span>Private</span>
           <span>4 Members Present</span>
         </div>
         <div className="portrait__author">
@@ -170,7 +170,7 @@ export default function PostDetailPage() {
         <p>{portrait.text}</p>
         <div className="portrait__actions">
           <button type="button" className={liked ? "is-on" : undefined} onClick={() => setLiked((value) => !value)}>
-            ♡ {portrait.likes + (liked ? 1 : 0)}
+            <Icon name="heart" /> {portrait.likes + (liked ? 1 : 0)}
           </button>
           <span>{shown.length}</span>
           <button type="button" onClick={() => setShared(true)}>
@@ -209,7 +209,7 @@ export default function PostDetailPage() {
                       )
                     }
                   >
-                    ♡ {item.likes || "Like"}
+                    <Icon name="heart" /> {item.likes || "Like"}
                   </button>
                   <button
                     type="button"

@@ -1,13 +1,24 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import GalleryWall from "./gallery/GalleryWall";
+import ActivityFeed from "./gallery/RecentActivity";
+import NowShowing from "./gallery/NowShowing";
+import SalonCalendar from "./gallery/SalonCalendar";
+import { member, memberFirstName } from "../../app/member";
+import { previewReaction, seedPhotoLikes } from "../../api/reactionService";
+import { revisePost, subscribePublished } from "../upload/published";
+import { listPosts, openPost, peekFeedFromApi, refreshFeedFromApi } from "../../api/posts";
+import EditPhotoDialog from "../../components/EditPhotoDialog";
+import { frameVars } from "./gallery/theme";
 import "../../styles/home.css";
+import "../../styles/gallery-wall.css";
 
 export const meta = {
   group: "Feed",
   title: "Home (Feed)",
-  path: "/",
-  href: "/",
-  flow: "Login → Home. From here: post detail, upload, calendar, photostrip, search, profile.",
+  path: "/home",
+  href: "/home",
+  flow: "Login → Home. From here: post detail, upload, calendar, photostrip, profile.",
   file: "frontend/src/pages/feed/HomePage.jsx",
   api: "backend/src/modules/posts",
   shell: true,
@@ -16,237 +27,172 @@ export const meta = {
   design: "design/home.png",
 };
 
-const filters = ["All Stories", "Mine", "Friends", "Folders", "Photostrips"];
-
-const polaroids = [
-  {
-    src: "/home/pol-mimi.png",
-    name: "Mimi",
-    when: "10:24 AM · Boudoir",
-    caption: "Sunbeams & morning...",
-    likes: 24,
-    mine: true,
-    to: "/posts/mimi",
-  },
-  {
-    src: "/home/pol-minx.png",
-    name: "Minx",
-    when: "Yesterday · Rooftop",
-    caption: "Awaiting twilight treats...",
-    likes: 10,
-    mine: false,
-    to: "/posts/minx",
-  },
-  {
-    src: "/home/pol-cleo.png",
-    name: "Cleo",
-    when: "Oct 15 · Salon",
-    caption: "Philosophical rose...",
-    likes: 24,
-    mine: false,
-    to: "/posts/cleo",
-  },
-];
-
-const folders = [
-  { src: "/home/folder-photoshoot.png", name: "Photoshoot Day", note: "Updated 7h ago", count: 24 },
-  { src: "/home/folder-brunch.png", name: "Brunch Club", note: "Updated Sunday", count: 18, to: "/folders/brunch-club" },
-  { src: "/home/folder-gossip.png", name: "Salon Gossip", note: "Updated Oct 12", count: 21 },
-  { src: "/home/folder-autumn.png", name: "Autumn Stroll", note: "Updated Oct 8", count: 12 },
-];
-
-const posts = [
-  {
-    src: "/home/post-mimi.png",
-    name: "Mimi",
-    place: "Paris Salon · 2h ago",
-    series: "Boudoir Camera Roll",
-    text: "Taking time to stop and admire the autumn blooms. The clowder approves of the new velvet parlor chaise!",
-    who: "Jasper",
-    comment: "Simply breathtaking Mimi! Save m",
-    likes: 24,
-    mine: true,
-    to: "/posts/mimi",
-  },
-  {
-    src: "/home/post-minx.png",
-    name: "Minx",
-    place: "Rooftop Terrace · 5h ago",
-    series: "Twilight Series",
-    text: "A quiet moment before the evening salon begins. Don’t forget to write today’s diary note!",
-    who: "Mimi",
-    comment: "The skyline looks divine, Minx! Bri",
-    likes: 21,
-    mine: false,
-    to: "/posts/minx",
-  },
-];
-
-const october = [
-  "", "", "", "", 1, 2, 3,
-  4, 5, 6, 7, 8, 9, 10,
-  11, 12, 13, 14, 15, 16, 17,
-  18, 19, 20, 21, 22, 23, 24,
-  25, 26, 27, 28, 29, 30, 31,
-];
-
-const marked = { 7: "is-mark", 11: "is-today", 16: "is-soft" };
+function seedNotes(list) {
+  return Object.fromEntries(list.map((work) => [work.id, work.commentItems || work.comments || []]));
+}
 
 export default function HomePage() {
-  const [filter, setFilter] = useState("All Stories");
-  const showPhotos = filter !== "Folders" && filter !== "Photostrips";
-  const showFolders = filter === "All Stories" || filter === "Folders";
-  const photoFilter = (item) => filter === "All Stories" || (filter === "Mine" ? item.mine : !item.mine);
+  const navigate = useNavigate();
+  const reactions = useRef(null);
+  const knownIds = useRef(new Set());
+  const [published, setPublished] = useState(0);
+  const [feedReady, setFeedReady] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [pendingCount, setPendingCount] = useState(0);
+  const all = useMemo(() => listPosts(), [published, feedReady]);
+  if (!reactions.current) reactions.current = seedPhotoLikes(all);
+  const heartsRef = useRef(null);
+  const tickets = useRef({});
+  const [index, setIndex] = useState(0);
+  const [hearts, setHearts] = useState(() =>
+    Object.fromEntries(listPosts().map((work) => [work.id, reactions.current.snapshot(work.id, member.id)])),
+  );
+  const [notes, setNotes] = useState(() => seedNotes(listPosts()));
+  const [toast, setToast] = useState("");
+  const [day, setDay] = useState("");
+  const [editing, setEditing] = useState(null);
+  const featured = all
+    .filter((work) => !work.mine)
+    .slice()
+    .sort((a, b) => (a.posted < b.posted ? 1 : a.posted > b.posted ? -1 : 0))
+    .slice(0, 3);
+  const visible = day ? all.filter((work) => work.posted === day) : all;
+
+  function applyFeed(posts, { announce = false } = {}) {
+    if (!reactions.current) reactions.current = seedPhotoLikes(posts);
+    const nextIds = new Set(posts.map((work) => work.id));
+    const added = posts.filter((work) => !work.mine && !knownIds.current.has(work.id));
+    if (announce && knownIds.current.size > 0 && added.length > 0) {
+      setToast(added.length === 1 ? "1 new photo on the wall." : `${added.length} new photos on the wall.`);
+    }
+    knownIds.current = nextIds;
+    setPendingCount(0);
+    setPublished((value) => value + 1);
+    setHearts(Object.fromEntries(posts.map((work) => [work.id, reactions.current.snapshot(work.id, member.id)])));
+    setNotes(seedNotes(posts));
+  }
+
+  async function refreshWall({ announce = true } = {}) {
+    if (refreshing) return;
+    setRefreshing(true);
+    try {
+      const posts = await refreshFeedFromApi();
+      applyFeed(posts, { announce });
+    } catch {
+      setToast("Couldn't refresh the wall. Try again.");
+    } finally {
+      setRefreshing(false);
+    }
+  }
+
+  useEffect(() => {
+    let alive = true;
+    refreshFeedFromApi()
+      .then((posts) => {
+        if (!alive) return;
+        setFeedReady(true);
+        applyFeed(posts, { announce: false });
+      })
+      .catch(() => {
+        if (alive) setFeedReady(true);
+      });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  // Local publish/edit only — do NOT call refreshFeedFromApi here.
+  // That wrote new signed URLs and re-entered this listener (wall blink).
+  useEffect(() => subscribePublished(() => {
+    const posts = listPosts();
+    knownIds.current = new Set(posts.map((work) => work.id));
+    setPublished((value) => value + 1);
+    if (reactions.current) {
+      setHearts(Object.fromEntries(posts.map((work) => [work.id, reactions.current.snapshot(work.id, member.id)])));
+      setNotes(seedNotes(posts));
+    }
+  }), []);
+
+  // Quiet check: notice new friend posts and show the chip — don't rewrite the wall until Refresh.
+  useEffect(() => {
+    const timer = window.setInterval(async () => {
+      try {
+        const rows = await peekFeedFromApi();
+        const added = rows.filter((row) => !row.mine && !knownIds.current.has(row.id));
+        setPendingCount(added.length);
+      } catch {
+        /* ignore background check errors */
+      }
+    }, 30000);
+    return () => window.clearInterval(timer);
+  }, []);
+  heartsRef.current = hearts;
+
+  useEffect(() => {
+    if (!toast) return undefined;
+    const timer = window.setTimeout(() => setToast(""), 3200);
+    return () => window.clearTimeout(timer);
+  }, [toast]);
+
+  async function setReaction(photoId, next) {
+    const user = { id: member.id, name: memberFirstName() };
+    const ticket = (tickets.current[photoId] || 0) + 1;
+    tickets.current[photoId] = ticket;
+    const previous = heartsRef.current[photoId];
+    const optimistic = previewReaction(previous, user, next);
+    heartsRef.current = { ...heartsRef.current, [photoId]: optimistic };
+    setHearts(heartsRef.current);
+    try {
+      const saved = await reactions.current.commit(photoId, user, next);
+      if (tickets.current[photoId] !== ticket) return;
+      heartsRef.current = { ...heartsRef.current, [photoId]: saved };
+      setHearts(heartsRef.current);
+    } catch (error) {
+      if (tickets.current[photoId] !== ticket) return;
+      heartsRef.current = { ...heartsRef.current, [photoId]: previous };
+      setHearts(heartsRef.current);
+      setToast(error.message || "Couldn't save that reaction.");
+    }
+  }
 
   return (
-    <div className="home">
-      <div>
-        <div className="home__intro">
-          <div>
-            <h1>
-              Good evening, <em>darling.</em>
-            </h1>
-            <p className="home__quiet">Here’s what your clowder shared lately</p>
-          </div>
-          <div className="home__fresh">
-            <p>12 Oct Salon · 8 memories fresh</p>
-            <p className="home__quiet">Curated chronologically</p>
-          </div>
-        </div>
-
-        <div className="home__chips" role="tablist" aria-label="Stories">
-          {filters.map((item) => (
-            <button
-              key={item}
-              type="button"
-              className={item === filter ? "is-on" : undefined}
-              aria-pressed={item === filter}
-              onClick={() => setFilter(item)}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
-
-        {showPhotos && (
-          <section className="home__section">
-            <div className="home__head">
-              <h2>Recent Polaroids</h2>
-              <Link to="/search">View all</Link>
-            </div>
-            <div className="home__polaroids">
-              {polaroids.filter(photoFilter).map((item) => (
-                <Link key={item.name} to={item.to} className="home__card">
-                  <img src={item.src} alt="" />
-                  <div>
-                    <strong>{item.name}</strong>
-                    <span className="home__row">
-                      <span>{item.when}</span>
-                      <span>♡ {item.likes}</span>
-                    </span>
-                    <span className="home__quiet">{item.caption}</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {showFolders && (
-          <section className="home__section">
-            <div className="home__head">
-              <h2>
-                Clowder Folders <span>Shared collections</span>
-              </h2>
-              <Link to="/search">View all</Link>
-            </div>
-            <div className="home__folders">
-              {folders.map((item) => {
-                const body = (
-                  <>
-                    <div className="home__thumb">
-                      <img src={item.src} alt="" />
-                      <span>{item.count}</span>
-                    </div>
-                    <strong>{item.name}</strong>
-                    <span className="home__quiet">{item.note}</span>
-                  </>
-                );
-                return item.to ? (
-                  <Link key={item.name} to={item.to} className="home__folder">
-                    {body}
-                  </Link>
-                ) : (
-                  <article key={item.name} className="home__folder">
-                    {body}
-                  </article>
-                );
-              })}
-            </div>
-          </section>
-        )}
-
-        {showPhotos && (
-          <section className="home__section">
-            <h2>Latest from Friends</h2>
-            <div className="home__posts">
-              {posts.filter(photoFilter).map((item) => (
-                <Link key={item.name} to={item.to} className="home__post">
-                  <div className="home__who">
-                    <span className="home__avatar">{item.name.slice(0, 1)}</span>
-                    <span>
-                      <strong>{item.name}</strong>
-                      <span className="home__quiet">{item.place}</span>
-                    </span>
-                  </div>
-                  <div className="home__shot">
-                    <img src={item.src} alt="" />
-                    <span>{item.series}</span>
-                  </div>
-                  <p>{item.text}</p>
-                  <p className="home__comment">
-                    <strong>{item.who}</strong> {item.comment}
-                  </p>
-                  <span className="home__likes">♡ {item.likes}</span>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {filter === "Photostrips" && (
-          <p className="home__empty">Photostrips from the studio will gather here.</p>
-        )}
-      </div>
-
+    <div className="home" style={frameVars}>
+      <NowShowing
+        works={featured}
+        index={index}
+        onIndex={setIndex}
+      />
+      <GalleryWall
+        works={visible}
+        emptyText={day && visible.length === 0 ? "Nothing was hung on this day." : ""}
+        hearts={hearts}
+        notes={notes}
+        onOpen={(work) => openPost(navigate, work)}
+        ownId={member.id}
+        onEdit={setEditing}
+        onReact={setReaction}
+        onRefresh={() => refreshWall({ announce: true })}
+        refreshing={refreshing}
+        pendingCount={pendingCount}
+      />
+      {editing ? (
+        <EditPhotoDialog
+          photo={editing}
+          onClose={() => setEditing(null)}
+          onSave={(patch) => {
+            revisePost(editing.id, (editing.photos || []).map((photo) => photo.id), patch);
+            setEditing(null);
+          }}
+        />
+      ) : null}
+      {toast ? (
+        <p className="toast" role="status">
+          {toast}
+        </p>
+      ) : null}
       <aside className="home__rail">
-        <section className="home__calendar">
-          <h2>October 2026</h2>
-          <div className="home__week">
-            {"S M T W T F S".split(" ").map((day, index) => (
-              <span key={`${day}-${index}`}>{day}</span>
-            ))}
-          </div>
-          <div className="home__days">
-            {october.map((day, index) => (
-              <span key={index} className={marked[day]}>
-                {day}
-              </span>
-            ))}
-          </div>
-          <p className="home__stored">5 visual memories stored</p>
-          <Link to="/calendar" className="home__button">
-            View book
-          </Link>
-        </section>
-        <section className="home__note">
-          <h2>TODAY’S SALON NOTE</h2>
-          <p>No entry for today yet. Share a quiet moment & words.</p>
-          <p className="home__quiet">Your private thoughts are visible only to the inner circle companions.</p>
-          <Link to="/calendar/2026-10-12" className="home__button home__button--ink">
-            Compose Entry
-          </Link>
-        </section>
+        <SalonCalendar selected={day} onSelect={setDay} />
+        <ActivityFeed />
       </aside>
     </div>
   );

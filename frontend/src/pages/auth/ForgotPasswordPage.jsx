@@ -1,4 +1,4 @@
-import ScreenStub from "../../components/ScreenStub";
+export { default } from "./ForgotPasswordForm";
 
 export const meta = {
   group: "Account",
@@ -7,11 +7,7 @@ export const meta = {
   href: "/forgot-password",
   flow: "Forgot password → reset link sent → Login",
   file: "frontend/src/pages/auth/ForgotPasswordPage.jsx",
-  api: "backend/src/modules/auth",
+  api: "frontend/src/api/passwordReset.js",
   shell: false,
-  note: "The sent-link message stays on this page.",
+  note: "Rendered inside AuthShell. The sent-link message stays on this page.",
 };
-
-export default function ForgotPasswordPage() {
-  return <ScreenStub meta={meta} />;
-}

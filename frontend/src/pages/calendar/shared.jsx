@@ -89,7 +89,6 @@ export function photosFor(date) {
 export function ViewSwitch({ mode }) {
   const items = [
     ["month", "/calendar", "Month"],
-    ["week", "/calendar/week", "Week"],
     ["year", "/calendar/year", "Year"],
   ];
   return (
@@ -100,14 +99,5 @@ export function ViewSwitch({ mode }) {
         </Link>
       ))}
     </div>
-  );
-}
-
-export function Crumb() {
-  return (
-    <p className="cal__crumb">
-      <Link to="/">Clowder</Link>
-      <span>Paris Moments</span>
-    </p>
   );
 }

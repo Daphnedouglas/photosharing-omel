@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/calendar.css";
-import { Crumb, ViewSwitch } from "./shared";
+import { ViewSwitch } from "./shared";
 
 export const meta = {
   group: "Calendar",
@@ -22,7 +22,7 @@ const months = [
   { id: "04", name: "April", photos: 22, diaries: 7, src: "/post/pearly.png", cats: ["Opal"] },
   { id: "05", name: "May", photos: 27, diaries: 8, src: "/folder/minx.png", cats: ["Marcel"] },
   { id: "06", name: "June", photos: 18, diaries: 5, src: "/profile/boudoir.png", cats: ["Opal"] },
-  { id: "07", name: "July", photos: 38, diaries: 14, src: "/folder/jasper.png", cats: ["Jasper"], hint: "38 photos · Click to open calendar" },
+  { id: "07", name: "July", photos: 38, diaries: 14, src: "/folder/jasper.png", cats: ["Jasper"], hint: "38 photos, Click to open calendar" },
   { id: "08", name: "August", photos: 20, diaries: 10, src: "/folder/minx.png", cats: ["Marcel"] },
   { id: "09", name: "September", photos: 25, diaries: 8, src: "/profile/rose.png", cats: ["Cleo"] },
   { id: "10", name: "October", photos: 26, diaries: 9, src: "/post/pearly.png", cats: ["Opal", "Cleo"], current: true },
@@ -40,14 +40,13 @@ export default function YearInPhotosPage() {
   return (
     <section className="cal">
       <div className="cal__top">
-        <Crumb />
         <ViewSwitch mode="year" />
       </div>
-      <p className="cal__kicker">Your year · Paris Clowder Retrospective</p>
+      <p className="cal__kicker">Your year, Paris Clowder Retrospective</p>
       <div className="year__head">
         <div>
           <h1>2026, in photos</h1>
-          <p>12 months of memories with your clowder · 284 cats shared</p>
+          <p>12 months of memories with your clowder, 284 cats shared</p>
         </div>
         <div className="cal__filters">
           {cats.map((item) => (
@@ -64,10 +63,10 @@ export default function YearInPhotosPage() {
             <span>{month.id}</span>
             <strong>{month.name}</strong>
             <em>
-              {month.photos} photos · {month.diaries} diaries
+              {month.photos} photos, {month.diaries} diaries
             </em>
             {month.hint && <small>{month.hint}</small>}
-            {month.current && <small>Salon Soirée · current</small>}
+            {month.current && <small>Salon Soirée, current</small>}
           </Link>
         ))}
       </div>
@@ -80,7 +79,7 @@ export default function YearInPhotosPage() {
           <span>Free express shipping to Paris</span>
         </div>
         <button type="button" onClick={() => setNote("The folio preview is being bound.")}>
-          Preview Book →
+          Preview Book
         </button>
       </div>
       {note && <p className="cal__quiet">{note}</p>}

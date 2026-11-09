@@ -1,0 +1,2 @@
+/api/*  http://Omel-api-env.eba-rjm2etgy.ap-southeast-1.elasticbeanstalk.com/api/:splat  200
+/*      /index.html   200

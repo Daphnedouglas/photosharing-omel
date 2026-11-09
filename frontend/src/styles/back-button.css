@@ -1,0 +1,144 @@
+a.back-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  max-width: 100%;
+  height: 44px;
+  gap: 14px;
+  margin: 0;
+  padding: 0 20px 0 0;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--wine);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: none;
+  cursor: pointer;
+  transition: transform 350ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+a.back-btn::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--wine);
+  clip-path: inset(0 calc(100% - 44px) 0 0 round 9999px);
+  transition: clip-path 350ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+a.back-btn:hover::before,
+a.back-btn:focus-visible::before,
+a.back-btn:active::before,
+a.back-btn.is-leaving::before {
+  clip-path: inset(0 round 9999px);
+}
+
+a.back-btn:active {
+  transform: scale(0.97);
+}
+
+a.back-btn:focus {
+  outline: none;
+}
+
+a.back-btn:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 3px;
+}
+
+a.back-btn .back-btn__knob,
+a.back-btn .back-btn__label,
+.salon__crumb p span.back-btn__knob,
+.salon__crumb p span.back-btn__label {
+  margin: 0;
+}
+
+.back-btn__knob,
+.back-btn__label {
+  position: relative;
+  z-index: 1;
+}
+
+.back-btn__knob {
+  display: grid;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--wine);
+  color: var(--blush);
+}
+
+.back-btn__knob svg {
+  transition: transform 350ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.back-btn__label {
+  color: var(--wine);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0ms linear, opacity 200ms ease;
+}
+
+a.back-btn:hover .back-btn__label,
+a.back-btn:focus-visible .back-btn__label,
+a.back-btn:active .back-btn__label,
+a.back-btn.is-leaving .back-btn__label {
+  color: var(--blush);
+  transition-delay: 350ms;
+}
+
+a.back-btn:hover .back-btn__knob svg,
+a.back-btn:focus-visible .back-btn__knob svg,
+a.back-btn:active .back-btn__knob svg {
+  transform: translateX(-4px);
+}
+
+a.back-btn.is-leaving .back-btn__label {
+  opacity: 0.85;
+}
+
+a.back-btn.is-leaving .back-btn__knob svg {
+  transform: translateX(-8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.back-btn,
+  a.back-btn::before,
+  a.back-btn .back-btn__label,
+  a.back-btn .back-btn__knob svg {
+    transition: none;
+  }
+
+  a.back-btn:active {
+    transform: none;
+  }
+
+  a.back-btn:hover .back-btn__label,
+  a.back-btn:focus-visible .back-btn__label,
+  a.back-btn:active .back-btn__label,
+  a.back-btn.is-leaving .back-btn__label {
+    transition-delay: 0ms;
+  }
+
+  a.back-btn:hover .back-btn__knob svg,
+  a.back-btn:focus-visible .back-btn__knob svg,
+  a.back-btn:active .back-btn__knob svg,
+  a.back-btn.is-leaving .back-btn__knob svg {
+    transform: none;
+  }
+}

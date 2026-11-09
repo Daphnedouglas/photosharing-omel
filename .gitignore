@@ -1,3 +1,41 @@
-node_modules
-dist
+# Dependencies & build
+node_modules/
+dist/
+build/
+.vite/
+coverage/
+
+# Env & secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.key
+*.csv
+credentials*
+*secret*
+*secrets*
+
+# AWS / cloud credential dumps
+**/aws-exports.js
+**/*credentials*.json
+**/*service-account*.json
+
+# Elastic Beanstalk deploy zips & local logs
+backend/api-*.zip
+backend/*.zip
+backend/server-err.txt
+backend/server-out.txt
+*.log
+
+# Editors & OS
+.vscode/
+.idea/
 .DS_Store
+Thumbs.db
+Desktop.ini
+
+# Hosting caches
+.vercel/
+.netlify/

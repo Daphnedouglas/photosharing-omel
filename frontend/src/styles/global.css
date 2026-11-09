@@ -1,16 +1,100 @@
+/* Hallmark · v2.0.0 · built: the project · redesign: polish */
+/* Hallmark · pre-emit critique: P3 H4 E3 S4 R4 V3 · weakest: E, floor tells only; the frames stay */
+
+@font-face {
+  font-family: "Cormorant Garamond Fallback";
+  src: local("Georgia");
+  size-adjust: 112%;
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
 :root {
-  color: #1c1917;
-  background: #f6f3ee;
-  font-family: "Segoe UI", sans-serif;
+  --color-ink: #1c1917;
+  --color-accent: #6d3c52;
+  --color-blush: #fadcd5;
+  --color-surface: #fff7f4;
+  --color-paper: #f6f3ee;
+  --color-muted: #765d67;
+  --font-ui: Inter, system-ui, sans-serif;
+  --font-body: var(--font-ui);
+  --font-display: "Cormorant Garamond", "Cormorant Garamond Fallback", Georgia, serif;
+  --blush: #fadcd5;
+  --mauve: #765d67;
+  --berry: #6d3c52;
+  --wine: #4b2138;
+  --plum: #1b0c1a;
+  --charcoal: #2d222f;
+  --rail-top: var(--wine);
+  --rail-bottom: #1b0c1a;
+  --rail-ink: #4b2138;
+  --rail-blush: #fadcd5;
+  --rail-berry: #6d3c52;
+  --rail-muted: #765d67;
+  --rail-tip: #2d222f;
+  --rail-width: 88px;
+  --rail-item: 48px;
+  --rail-radius: 12px;
+  --rail-gap: 14px;
+  --rail-top-offset: 33vh;
+  --rail-bottom-offset: 24px;
+  --rail-tab: 74px;
+  --rail-slide: 250ms;
+  --rail-tip-in: 150ms;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 18px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-9: 36px;
+  --space-10: 48px;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  font-family: var(--font-ui);
+  font-feature-settings: "liga", "kern";
   line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  caret-color: var(--color-accent);
+}
+
+::selection {
+  background: var(--color-blush);
+  color: var(--color-accent);
 }
 
 * {
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
+  overflow-x: clip;
+}
+
+body.is-frame {
+  overflow: hidden;
+  background: var(--plum);
+  color: var(--blush);
+}
+
+:where(button[type="submit"]:disabled) {
+  background: color-mix(in srgb, var(--color-blush) 82%, var(--color-surface));
+  color: var(--color-muted);
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  flex: none;
 }
 
 a {
@@ -24,10 +108,45 @@ p {
 }
 
 h1 {
-  font-family: Georgia, serif;
-  font-size: 2.4rem;
+  font-family: var(--font-display);
+  font-size: 2.69rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+h1 em,
+h2 em {
+  font-family: var(--font-display);
+  font-style: italic;
   font-weight: 500;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
+  color: #6d3c52;
+}
+
+.museum-label {
+  margin: 0 0 6px;
+  color: #765d67;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+:where(input, textarea, select) {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+:where(button) {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 .stub,
@@ -90,8 +209,11 @@ h1 {
 }
 
 .wordmark {
-  font-family: Georgia, serif;
-  font-size: 1.6rem;
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
   text-decoration: none;
 }
 
@@ -155,4 +277,13 @@ h1 {
 .map__group span {
   color: #57534e;
   font-size: 0.9rem;
+}
+
+html.omel-reduce-motion *,
+html.omel-reduce-motion *::before,
+html.omel-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
 }

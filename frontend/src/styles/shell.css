@@ -1,0 +1,135 @@
+@property --rail-w {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 72px;
+}
+
+.desk {
+  --rail-w: 72px;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--rail-w) minmax(0, 1fr);
+  gap: 12px;
+  height: 100vh;
+  padding: 16px;
+  overflow: hidden;
+  background: linear-gradient(var(--charcoal), var(--plum));
+  color: var(--blush);
+  transition: --rail-w 300ms cubic-bezier(0.4, 0, 0.2, 1), grid-template-columns 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.desk.is-open {
+  --rail-w: 232px;
+}
+
+.desk.is-moving {
+  will-change: grid-template-columns;
+}
+
+.desk__panel {
+  grid-column: 2;
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  border-radius: 28px;
+  padding: 32px;
+  background: color-mix(in srgb, var(--blush) 30%, white);
+  color: var(--color-accent);
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--blush) 72%, white) transparent;
+}
+
+.desk__panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.desk__panel::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--blush) 78%, var(--mauve));
+}
+
+.desk__scrim {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border: 0;
+  background: color-mix(in srgb, var(--plum) 50%, transparent);
+  cursor: pointer;
+}
+
+.desk__upload-pill {
+  flex: none;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: linear-gradient(var(--wine), var(--berry));
+  color: var(--blush);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@media (min-width: 1440px) {
+  .desk {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 1099px) {
+  .desk__panel {
+    padding: 24px;
+  }
+
+  .desk,
+  .desk.is-open {
+    --rail-w: 72px;
+  }
+
+  .desk.is-open .rail {
+    position: absolute;
+    z-index: 3;
+    top: 16px;
+    bottom: 16px;
+    left: 16px;
+    width: 232px;
+    background: linear-gradient(var(--charcoal), var(--plum));
+  }
+}
+
+@media (max-width: 767px) {
+  .desk,
+  .desk.is-open {
+    --rail-w: 0px;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 8px;
+    padding-bottom: 88px;
+  }
+
+  .desk__panel {
+    grid-column: 1;
+    border-radius: 20px;
+    padding: 16px;
+  }
+
+  .desk__scrim {
+    display: none;
+  }
+
+  .desk.is-open .rail {
+    position: fixed;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--plum);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .desk {
+    transition: none;
+  }
+}

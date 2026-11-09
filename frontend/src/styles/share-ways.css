@@ -1,0 +1,297 @@
+.share-ways {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 4px;
+  overflow: hidden;
+  color: var(--plum);
+}
+
+.share-ways__lede,
+.share-ways__hint,
+.share-ways__empty p {
+  margin: 0;
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.share-ways__title {
+  color: var(--wine);
+  font-weight: 600;
+}
+
+.share-ways__tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--blush) 70%, white);
+}
+
+.share-ways__tabs button {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--wine);
+  font: 500 14px var(--font-ui);
+  cursor: pointer;
+}
+
+.share-ways__tabs button.is-on {
+  background: var(--wine);
+  color: white;
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--plum) 18%, transparent);
+}
+
+.share-ways__panel {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--blush) 75%, var(--mauve));
+  border-radius: 20px;
+  background: color-mix(in srgb, white 90%, var(--blush));
+}
+
+.share-ways__empty,
+.share-ways__link,
+.share-ways__qr {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  justify-items: start;
+}
+
+.share-ways__qr {
+  justify-items: center;
+  text-align: center;
+}
+
+.share-ways__chip {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 6px 6px 6px 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--blush) 65%, var(--mauve));
+  border-radius: 14px;
+  background: white;
+}
+
+.share-ways__chip-mark {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--blush);
+  color: var(--wine);
+}
+
+.share-ways__chip-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--plum);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.share-ways__copy {
+  flex: none;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--wine);
+  color: white;
+  font: 600 13px var(--font-ui);
+  cursor: pointer;
+}
+
+.share-ways__meta {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.share-ways__qr-card {
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--plum) 10%, transparent);
+}
+
+.share-ways__qr-card img {
+  display: block;
+  width: 180px;
+  height: 180px;
+}
+
+.share-ways__qr .share-ways__timer {
+  margin-top: 2px;
+}
+
+.share-ways__primary,
+.share-ways__ghost {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font: 500 14px var(--font-ui);
+  cursor: pointer;
+}
+
+.share-ways__primary {
+  border: 0;
+  background: var(--wine);
+  color: white;
+}
+
+.share-ways__ghost {
+  border: 1px solid color-mix(in srgb, var(--mauve) 35%, white);
+  background: white;
+  color: var(--wine);
+}
+
+.share-ways__timer {
+  margin: 0;
+  color: var(--wine);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.share-ways__error {
+  margin: 0;
+  color: var(--wine);
+  font-size: 14px;
+}
+
+.share-open {
+  min-height: 100vh;
+  padding: 48px 24px 64px;
+  background:
+    radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--blush) 35%, transparent), transparent 42%),
+    linear-gradient(180deg, var(--plum), var(--charcoal));
+  color: var(--blush);
+  font-family: var(--font-ui);
+}
+
+.share-open h1 {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+}
+
+.share-open__eyebrow {
+  margin: 0 0 8px;
+  color: color-mix(in srgb, var(--blush) 70%, white);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.share-open__copy {
+  margin: 0 0 12px;
+  color: color-mix(in srgb, var(--blush) 78%, white);
+  font-size: 15px;
+  line-height: 1.45;
+  max-width: 36rem;
+}
+
+.share-open__head {
+  max-width: 720px;
+  margin: 0 auto 24px;
+}
+
+.share-open__stage {
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  max-width: min(420px, 100%);
+}
+
+.share-open a {
+  color: var(--blush);
+}
+
+.share-open--preview {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.share-open__photo {
+  display: block;
+  width: min(100%, 520px);
+  max-height: 70vh;
+  margin: 8px 0 12px;
+  object-fit: contain;
+  border: 4px solid var(--blush);
+  border-radius: 4px;
+  background: var(--plum);
+}
+
+.share-open__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.share-open__actions .share-ways__ghost,
+.share-open__actions a.share-ways__ghost {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid color-mix(in srgb, var(--blush) 45%, transparent);
+  border-radius: 999px;
+  color: var(--blush);
+  text-decoration: none;
+  background: transparent;
+}
+
+.share-open__actions .share-ways__primary {
+  cursor: pointer;
+  border: 0;
+}

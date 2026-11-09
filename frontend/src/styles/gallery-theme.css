@@ -1,0 +1,59 @@
+/* Every color on the gallery hero. Components read these variables only. */
+
+.gallery {
+  --gallery-wall: #4b2138;
+  --gallery-deep: #1b0c1a;
+  --gallery-damask: #6d3c52;
+  --gallery-damask-opacity: 0.12;
+  --gallery-muted: #765d67;
+  --gallery-card: #2d222f;
+  --gallery-text: #fadcd5;
+
+  --gallery-floor: var(--gallery-deep);
+  --gallery-floor-board: var(--gallery-wall);
+  --gallery-floor-fade: rgb(27 12 26 / 0.55);
+  --gallery-vignette: var(--gallery-deep);
+  --gallery-title-shade: rgb(27 12 26 / 0.62);
+  --gallery-glow: rgb(250 220 213 / 0.28);
+  --gallery-wood: var(--gallery-deep);
+  --gallery-wood-light: var(--gallery-card);
+  --gallery-photo: var(--gallery-deep);
+
+  --gallery-title: var(--gallery-text);
+  --gallery-cta-bg: var(--gallery-text);
+  --gallery-cta-text: var(--gallery-deep);
+
+  --gallery-nav-bg: var(--gallery-card);
+  --gallery-nav-active: var(--gallery-text);
+  --gallery-nav-shadow: rgb(0 0 0 / 0.28);
+
+  /* #765D67 is 2.24:1 on the wall and 2.56:1 on the nav, under the 4.5:1
+     needed for small text. This mix of the muted and blush tones is 5.13:1
+     on the wall and 5.84:1 on the nav. */
+  --gallery-muted-on-dark: #b59a9c;
+  --gallery-label: var(--gallery-muted-on-dark);
+  --gallery-nav-inactive: var(--gallery-muted-on-dark);
+
+  --gallery-gold-1: #f8e7b0;
+  --gallery-gold-2: #c6a15b;
+  --gallery-gold-3: #f3d78a;
+  --gallery-gold-4: #7a5a22;
+  --gallery-gold-hook: #f3e0a8;
+  --gallery-gold-deep: #8a6230;
+  --gallery-gold-mid: #6d4a1c;
+  --gallery-frame-glow: rgb(255 214 150 / 0.34);
+  --gallery-gold-line: rgb(255 236 190 / 0.55);
+  --gallery-gold-inset: rgb(40 18 6 / 0.35);
+}
+
+.landing {
+  --bubble-received-bg: #fadcd5;
+  --bubble-received-text: #1b0c1a;
+  --bubble-sent-bg: #6d3c52;
+  --bubble-sent-text: #fadcd5;
+  --bubble-name: #765d67;
+  --bubble-shadow: 0 10px 30px rgb(27 12 26 / 0.35);
+  --bubble-line: #fadcd5;
+  --bubble-heart: #fadcd5;
+  --bubble-badge: #fff6f4;
+}

@@ -1,432 +1,963 @@
-.vault {
-  margin-top: 18px;
-  color: #6d3c52;
+.hang {
+  position: relative;
+  padding: 0 0 48px;
+  color: var(--plum);
+  font-family: var(--font-ui);
+  font-size: 15px;
 }
 
-.vault__crumb {
-  display: flex;
-  gap: 8px;
-  color: #765d67;
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
+.hang__column {
+  max-width: 880px;
+  margin: 0 auto;
 }
 
-.vault__crumb a {
-  color: #6d3c52;
-  text-decoration: none;
+.hang h1 {
+  margin-top: 0;
+  color: var(--plum);
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
-.vault h1 {
+.hang__lede {
   margin-top: 8px;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.8rem, 2.4vw, 2.3rem);
-  font-style: italic;
-  font-weight: 500;
+  color: var(--mauve);
+  font-size: 16px;
 }
 
-.vault__intro {
+.hang__steps {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  align-items: center;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.vault__lede {
-  max-width: 520px;
-  margin-top: 6px;
-  color: #765d67;
-  font-size: 0.92rem;
-}
-
-.vault__drafts {
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: #fde8e4;
-  color: #6d3c52;
-  font-size: 0.82rem;
-}
-
-.vault__grid {
-  display: grid;
-  grid-template-columns: minmax(280px, 0.86fr) minmax(360px, 1.14fr);
-  gap: 22px;
-  margin-top: 18px;
-}
-
-.vault__drop,
-.vault__panel {
-  border-radius: 28px;
-  background: #fff;
-  box-shadow: 0 16px 40px rgba(109, 60, 82, 0.05);
-}
-
-.vault__drop {
-  padding: 28px 26px 22px;
-  text-align: center;
-}
-
-.vault__drop.is-over {
-  outline: 2px solid #6d3c52;
-  outline-offset: 4px;
-}
-
-.vault__mark {
-  display: grid;
-  width: 72px;
-  height: 72px;
-  margin: 8px auto 16px;
-  place-items: center;
-  border-radius: 50%;
-  background: #fde8e4;
-  color: #6d3c52;
-}
-
-.vault__drop h2,
-.vault__quote {
-  font-family: "Playfair Display", Georgia, serif;
-  font-style: italic;
-  font-weight: 500;
-}
-
-.vault__drop h2 {
-  font-size: 1.55rem;
-}
-
-.vault__drop p {
-  max-width: 320px;
-  margin: 8px auto 0;
-  color: #765d67;
-  font-size: 0.9rem;
-}
-
-.vault__drop > button,
-.vault__publish > button:first-child {
-  border: 0;
-  border-radius: 999px;
-  background: #6d3c52;
-  color: #fff;
-  font: inherit;
-  cursor: pointer;
-  transition: background-color 140ms ease;
-}
-
-.vault__drop > button {
+.hang__steps li {
   display: inline-flex;
+  gap: 6px;
   align-items: center;
-  gap: 8px;
-  margin-top: 18px;
-  padding: 12px 22px;
+  color: var(--mauve);
+  font-size: 14px;
 }
 
-.vault__drop > button:hover,
-.vault__publish > button:first-child:hover:not(:disabled) {
-  background: #6d3c52;
-}
-
-.vault__fine {
-  margin-top: 16px;
-  font-size: 0.78rem;
-}
-
-.vault__hint {
-  display: inline-block;
-  margin-top: 14px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: #fde8e4;
-  color: #6d3c52;
-  font-size: 0.75rem;
-}
-
-.vault__quote {
-  margin-top: 18px;
-  color: #6d3c52;
-  text-align: center;
-  font-size: 1.05rem;
-}
-
-.vault__panel {
-  padding: 18px 18px 16px;
-}
-
-.vault__panel-head,
-.vault__caption > span,
-.vault__publish {
-  display: flex;
+.hang__steps button,
+.hang__steps .is-current,
+.hang__steps .is-future {
+  display: inline-flex;
+  gap: 6px;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.vault__panel h2 {
-  font-size: 1.05rem;
-}
-
-.vault__panel h2 span,
-.vault__caption > span span {
-  margin-left: 8px;
-  color: #765d67;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.vault__panel h2 span {
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: #fde8e4;
-  color: #6d3c52;
-}
-
-.vault__panel-head > button,
-.vault__discard,
-.vault__add,
-.vault__tags button {
   border: 0;
   background: transparent;
-  color: #6d3c52;
+  color: var(--mauve);
   font: inherit;
+  font-size: 14px;
+}
+
+.hang__steps .is-done {
+  color: var(--wine);
   cursor: pointer;
 }
 
-.vault__portraits {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
+.hang__steps .is-current {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--wine);
+  color: var(--blush);
+}
+
+.hang__steps button:focus-visible,
+.hang__go:focus-visible,
+.hang__ghost:focus-visible,
+.hang__field input:focus-visible,
+.hang__field textarea:focus-visible,
+.hang__field select:focus-visible,
+.hang__see > div[role="group"] button:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 2px;
+}
+
+.hang__card {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 24px;
+  background: rgb(255 255 255 / 0.92);
+  box-shadow: 0 20px 50px rgb(from var(--plum) r g b / 0.1);
+}
+
+.hang__drop,
+.hang__more {
+  border: 2px dashed rgb(from var(--berry) r g b / 0.45);
+  border-radius: 20px;
+  background: rgb(from var(--blush) r g b / 0.25);
+  color: var(--plum);
+}
+
+.hang__drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 320px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.hang__drop.is-over,
+.hang__more.is-over {
+  border-style: solid;
+  border-color: var(--wine);
+  background: rgb(from var(--blush) r g b / 0.55);
+}
+
+.hang__frames {
+  position: relative;
+  width: 210px;
+  height: 112px;
+}
+
+.hang__frame {
+  position: absolute;
+  bottom: 0;
+  border: 5px solid var(--wine);
+  border-radius: 2px;
+  background: rgb(255 255 255 / 0.6);
+  transition: transform 180ms ease;
+}
+
+.hang__frame::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 10px;
+  height: 8px;
+  border: 2px solid var(--wine);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  transform: translateX(-50%);
+}
+
+.hang__frame--a {
+  left: 8px;
+  width: 58px;
+  height: 74px;
+  --tilt: -6deg;
+  transform: rotate(var(--tilt));
+}
+
+.hang__frame--b {
+  left: 70px;
+  z-index: 1;
+  width: 70px;
+  height: 90px;
+  --tilt: 0deg;
+  transform: rotate(var(--tilt));
+}
+
+.hang__frame--c {
+  left: 142px;
+  width: 54px;
+  height: 70px;
+  --tilt: 5deg;
+  transform: rotate(var(--tilt));
+}
+
+.hang__drop.is-over .hang__frame {
+  transform: translateY(-6px) rotate(var(--tilt));
+}
+
+.hang__invite {
+  margin-top: 16px;
+  color: var(--plum);
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.hang__or {
+  margin-top: 6px;
+  color: var(--mauve);
+  font-size: 15px;
+}
+
+.hang__choose {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--wine), var(--berry));
+  color: var(--blush);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.hang__fine,
+.hang__size,
+.hang__notice {
+  color: var(--mauve);
+  font-size: 13px;
+}
+
+.hang__fine {
   margin-top: 14px;
 }
 
-.vault__shot {
-  position: relative;
-  height: 148px;
-  overflow: hidden;
-  border-radius: 18px;
+.hang__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 56px;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-.vault__shot img {
+.hang__photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(0, 160px));
+  gap: 16px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hang__photo {
+  width: 100%;
+  min-width: 0;
+  animation: hang-in 220ms ease;
+}
+
+.hang__shot {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 5px solid var(--wine);
+  border-radius: 2px;
+  background: white;
+}
+
+.hang__shot img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.vault__shot > button {
+.hang__shot button {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 22px;
-  height: 22px;
-  border: 0;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid rgb(from var(--blush) r g b / 0.3);
   border-radius: 50%;
-  background: rgba(109, 60, 82, 0.55);
-  color: #fff;
+  background: rgb(from var(--plum) r g b / 0.8);
+  color: var(--blush);
   cursor: pointer;
 }
 
-.vault__busy {
+.hang__remove {
+  top: 8px;
+  right: 8px;
+}
+
+.hang__edit {
+  bottom: 8px;
+  left: 8px;
+}
+
+.hang__badge {
   position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  align-content: center;
+  top: 8px;
+  left: 8px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: var(--blush);
+  color: var(--wine);
+  font-size: 13px;
+}
+
+.hang__plaque {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.hang__name {
+  overflow: hidden;
+  color: var(--plum);
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hang__notice {
+  margin-top: 12px;
+  color: var(--wine);
+}
+
+.hang__file,
+.hang__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.hang__drop:focus-visible,
+.hang__more:focus-visible,
+.hang__shot button:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 2px;
+}
+
+@keyframes hang-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hang-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .hang__photos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .hang__drop {
+    height: 240px;
+  }
+
+  .hang__frames {
+    transform: scale(0.82);
+  }
+
+  .hang__photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hang__crop {
+    height: 240px;
+  }
+}
+
+.hang__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 12px;
+  background: rgb(255 255 255 / 0.92);
+}
+
+.hang__go,
+.hang__ghost,
+.hang__peek {
+  display: inline-flex;
   gap: 8px;
-  background: rgba(109, 60, 82, 0.62);
-  color: #fff;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-.vault__ring {
-  display: grid;
-  width: 54px;
-  height: 54px;
-  place-items: center;
+.hang__go {
+  border: 0;
+  background: linear-gradient(180deg, var(--wine), var(--berry));
+  color: var(--blush);
+}
+
+.hang__go:disabled {
+  background: rgb(from var(--blush) r g b / 0.4);
+  color: var(--mauve);
+  cursor: not-allowed;
+}
+
+.hang__spin {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgb(from var(--blush) r g b / 0.45);
+  border-top-color: currentColor;
   border-radius: 50%;
-  background: conic-gradient(#fadcd5 var(--progress), rgba(255, 255, 255, 0.28) 0);
+  animation: hang-spin 0.8s linear infinite;
 }
 
-.vault__ring span,
-.vault__busy em {
-  font-size: 0.62rem;
-  font-style: normal;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+.hang__retry {
+  margin-left: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--wine);
+  font: inherit;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-.vault__ring span {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border-radius: 50%;
-  background: #2a171c;
-  letter-spacing: 0;
-  text-transform: none;
-}
-
-.vault figcaption {
-  margin-top: 6px;
+.hang__done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 8px 8px;
   text-align: center;
 }
 
-.vault figcaption strong,
-.vault figcaption span {
-  display: block;
+.hang__done .hang__preview-frame {
+  width: min(240px, 100%);
 }
 
-.vault figcaption span,
-.vault__empty,
-.vault__rows span span,
-.vault__strip {
-  color: #765d67;
-  font-size: 0.75rem;
+.hang__done h2 {
+  color: var(--plum);
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.1;
 }
 
-.vault__caption {
-  display: block;
+.hang__done p {
+  margin: 0;
+  color: var(--mauve);
+  font-size: 16px;
+}
+
+.hang__done h2:focus {
+  outline: none;
+}
+
+.hang__ghost {
+  border: 1px solid var(--blush);
+  background: transparent;
+  color: var(--wine);
+}
+
+.hang__reason {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--mauve);
+  font-size: 13px;
+  text-align: right;
+}
+
+.hang__split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: 28px;
+  align-items: start;
+  margin-top: 8px;
+}
+
+.hang__split > .hang__bar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  grid-column: 1 / -1;
+}
+
+.hang__split > .hang__bar > .hang__ghost {
+  justify-self: start;
+}
+
+.hang__split > .hang__bar > .hang__go {
+  justify-self: end;
+}
+
+.hang__split > .hang__bar > .hang__reason {
+  grid-column: 1 / -1;
+  justify-self: end;
+}
+
+.hang__peek {
+  position: relative;
+  justify-self: center;
+  border: 1px solid var(--wine);
+  background: transparent;
+  color: var(--wine);
+}
+
+.hang__peek:hover {
+  background: rgb(from var(--blush) r g b / 0.5);
+}
+
+.hang__form h2,
+.hang__ask h2 {
+  color: var(--plum);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.hang__form h2:focus,
+.hang h1:focus {
+  outline: none;
+}
+
+.hang__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   margin-top: 16px;
 }
 
-.vault__caption textarea,
-.vault__tags input,
-.vault__rows select {
-  width: 100%;
-  border: 0;
-  border-radius: 14px;
-  background: #fff6f4;
-  color: #6d3c52;
-  font: inherit;
+.hang__field > span,
+.hang__see > span {
+  display: flex;
+  justify-content: space-between;
+  color: var(--wine);
+  font-size: 15px;
 }
 
-.vault__caption textarea {
-  min-height: 72px;
-  margin-top: 8px;
-  padding: 12px;
+.hang__field em,
+.hang__hint,
+.hang__field small {
+  color: var(--mauve);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.hang__field input,
+.hang__field textarea,
+.hang__field select {
+  width: 100%;
+  border: 1px solid var(--blush);
+  border-radius: 14px;
+  background: white;
+  color: var(--plum);
+  font: inherit;
+  font-size: 15px;
+}
+
+.hang__field input,
+.hang__field select {
+  height: 48px;
+  padding: 0 14px;
+}
+
+.hang__field textarea {
+  min-height: 96px;
+  padding: 12px 14px;
   resize: vertical;
 }
 
-.vault__caption textarea:focus,
-.vault__tags input:focus,
-.vault__rows select:focus {
-  outline: 2px solid #6d3c52;
+.hang__field input:focus,
+.hang__field textarea:focus,
+.hang__field select:focus {
+  outline: 2px solid var(--berry);
+  outline-offset: 0;
 }
 
-.vault__tags {
+.hang__chips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.vault__tags button,
-.vault__add,
-.vault__tags input {
-  padding: 6px 10px;
+.hang__chips button {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 10px;
+  border: 0;
   border-radius: 999px;
-  background: #fde8e4;
+  background: var(--blush);
+  color: var(--wine);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
 }
 
-.vault__tags input {
-  width: 110px;
+.hang__see {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 16px;
 }
 
-.vault__rows {
+.hang__see > div[role="group"] {
   display: grid;
+  grid-template-columns: 132px 132px;
+  padding: 4px;
+  border: 1px solid var(--blush);
+  border-radius: 999px;
+  background: white;
+}
+
+.hang__see > div[role="group"] button {
+  height: 40px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--mauve);
+  font: inherit;
+  font-size: 15px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.hang__see > div[role="group"] button[aria-pressed="true"] {
+  background: var(--wine);
+  color: var(--blush);
+}
+
+.hang__see small,
+.hang__status small {
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.hang__hint {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 8px 0 0;
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.hang__status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.hang__lock {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--wine), var(--berry));
+  box-shadow: 0 6px 16px rgb(from var(--wine) r g b / 0.28);
+  color: var(--blush);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: default;
+}
+
+.hang__lock:hover {
+  background: linear-gradient(135deg, var(--wine), var(--berry));
+  color: var(--blush);
+}
+
+.hang__status button {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--berry);
+  font: inherit;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.hang__more-options {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  width: fit-content;
+  margin-top: 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--wine);
+  font: inherit;
+  font-size: 15px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.hang__more-options svg {
+  transition: transform 200ms ease;
+}
+
+.hang__more-options[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.hang__more-options:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.hang__preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hang__preview-frame {
+  overflow: hidden;
+  border: 5px solid var(--wine);
+  border-radius: 2px;
+  background: white;
+  aspect-ratio: 4 / 5;
+}
+
+.hang__preview-frame img,
+.hang__thumbs img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hang__preview p {
+  margin: 0;
+  color: var(--plum);
+  font-size: 14px;
+}
+
+.hang__preview small {
+  color: var(--mauve);
+  font-size: 13px;
+}
+
+.hang__thumbs {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hang__thumbs li {
+  width: 48px;
+  height: 60px;
+  overflow: hidden;
+  border: 2px solid var(--wine);
+  border-radius: 2px;
+}
+
+.hang__ask {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgb(from var(--plum) r g b / 0.6);
+}
+
+.hang__ask > div {
+  width: min(420px, 100%);
+  padding: 24px;
+  border-radius: 24px;
+  background: white;
+}
+
+.hang__ask p {
+  margin-top: 8px;
+  color: var(--mauve);
+  font-size: 15px;
+}
+
+.hang__ask .hang__editor {
+  width: min(640px, 100%);
+}
+
+.hang__editor h2 {
+  color: var(--plum);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.hang__crop {
+  position: relative;
+  height: 360px;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--plum);
+}
+
+.hang__crop .reactEasyCrop_CropArea {
+  border: 2px solid var(--blush);
+  background: transparent;
+  color: rgb(from var(--plum) r g b / 0.28);
+}
+
+.hang__ratios,
+.hang__turns {
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: 14px;
 }
 
-.vault__rows label,
-.vault__rows > div {
-  display: grid;
-  grid-template-columns: 28px 1fr auto;
+.hang__ratios button,
+.hang__turns button {
+  display: inline-flex;
+  gap: 6px;
   align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 16px;
-  background: #fff6f4;
-}
-
-.vault__rows strong,
-.vault__rows span span {
-  display: block;
-}
-
-.vault__rows select {
-  width: auto;
-  padding: 6px 10px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--blush);
   border-radius: 999px;
-  background: #fde8e4;
-  color: #6d3c52;
-}
-
-.vault__switch {
-  width: 42px;
-  height: 24px;
-  border: 0;
-  border-radius: 999px;
-  background: #e7d5d8;
+  background: white;
+  color: var(--wine);
+  font: inherit;
+  font-size: 14px;
   cursor: pointer;
 }
 
-.vault__switch::after {
-  content: "";
-  display: block;
-  width: 18px;
-  height: 18px;
-  margin-left: 3px;
-  border-radius: 50%;
-  background: #fff;
+.hang__ratios button.is-on {
+  border-color: var(--wine);
+  background: var(--wine);
+  color: var(--blush);
 }
 
-.vault__switch.is-on {
-  background: #6d3c52;
+.hang__zoom {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 14px;
+  color: var(--wine);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.vault__switch.is-on::after {
-  margin-left: 21px;
-}
-
-.vault__publish {
-  margin-top: 16px;
-}
-
-.vault__publish > button:first-child {
+.hang__zoom input {
   flex: 1;
-  padding: 14px 18px;
+  accent-color: var(--wine);
 }
 
-.vault__publish > button:disabled {
-  cursor: wait;
-  opacity: 0.7;
+.hang__zoom-btn {
+  display: inline-grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid var(--blush);
+  border-radius: 50%;
+  background: white;
+  color: var(--wine);
+  cursor: pointer;
 }
 
-.vault__strip {
-  display: block;
-  margin-top: 12px;
-  text-align: center;
-  text-decoration: none;
+.hang__zoom-btn:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 2px;
 }
 
-.vault__empty {
-  margin-top: 16px;
+.hang__crop--frame .reactEasyCrop_CropArea {
+  border: 2px solid var(--blush);
+  color: rgb(from var(--plum) r g b / 0.45);
 }
 
-@media (max-width: 1100px) {
-  .vault__grid,
-  .vault__portraits {
-    grid-template-columns: 1fr 1fr;
+.hang__editor--adjust .hang__bar {
+  justify-content: space-between;
+}
+
+.hang__editor .hang__bar > span {
+  display: flex;
+  gap: 8px;
+}
+
+.hang__editor h2:focus {
+  outline: none;
+}
+
+@media (max-width: 900px) {
+  .hang__split {
+    grid-template-columns: 1fr;
+  }
+
+  .hang__preview {
+    order: -1;
   }
 }
 
-@media (max-width: 720px) {
-  .vault__grid,
-  .vault__portraits,
-  .vault__rows label,
-  .vault__rows > div {
-    grid-template-columns: 1fr;
+@media (max-width: 600px) {
+  .hang__split > .hang__bar {
+    gap: 8px;
+  }
+
+  .hang__peek {
+    width: 44px;
+    padding: 0;
+  }
+
+  .hang__peek__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .hang__split > .hang__bar > .hang__ghost,
+  .hang__split > .hang__bar > .hang__go {
+    padding: 10px 12px;
+    white-space: nowrap;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vault__drop > button,
-  .vault__publish > button:first-child {
+  .hang__frame {
+    transition: none;
+  }
+
+  .hang__photo {
+    animation: none;
+  }
+
+  .hang__spin {
+    animation: none;
+  }
+
+  .hang__more-options svg {
     transition: none;
   }
 }

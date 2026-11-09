@@ -4,12 +4,12 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  color: #6d3c52;
-  font-family: Inter, "Segoe UI", sans-serif;
+  color: var(--color-accent);
+  font-family: var(--font-body);
   background:
-    radial-gradient(70% 42% at 8% 0%, #ffffff 0%, transparent 58%),
-    radial-gradient(46% 36% at 100% 100%, #fadcd5 0%, transparent 70%),
-    linear-gradient(180deg, #fff8f6 0%, #fdeeea 55%, #fadcd5 100%);
+    radial-gradient(70% 42% at 8% 0%, var(--color-surface) 0%, transparent 58%),
+    radial-gradient(46% 36% at 100% 100%, var(--color-blush) 0%, transparent 70%),
+    linear-gradient(180deg, #fff8f6 0%, #fdeeea 55%, var(--color-blush) 100%);
 }
 
 .salon {
@@ -40,11 +40,11 @@
   gap: 10px;
   color: inherit;
   text-decoration: none;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 2.35rem;
-  font-weight: 560;
-  letter-spacing: -0.04em;
-  line-height: 1;
+  font-family: var(--font-display);
+  font-size: 2.63rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
 }
 
 .brand__mark {
@@ -54,18 +54,17 @@
 }
 
 .brand__salon {
-  font-family: Inter, sans-serif;
+  font-family: var(--font-body);
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
-  color: #6d3c52;
+  color: var(--color-accent);
 }
 
 .brand__dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #6d3c52;
+  background: var(--color-accent);
 }
 
 .account {
@@ -94,9 +93,9 @@
 
 .pill--dark,
 .pill--ghost {
-  border: 1.5px solid #6d3c52;
+  border: 1.5px solid var(--color-accent);
   background: transparent;
-  color: #6d3c52;
+  color: var(--color-accent);
   padding: 12px 18px;
   font-size: 0.95rem;
   transition: background-color 140ms ease, color 140ms ease;
@@ -108,8 +107,8 @@
 
 .pill--dark:hover,
 .pill--ghost:hover {
-  background: #6d3c52;
-  color: #fff;
+  background: var(--color-accent);
+  color: var(--color-surface);
 }
 
 .pill--wide {
@@ -147,11 +146,10 @@
   padding: 7px 12px;
   border: 1px solid #f1d5dc;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.8);
+  background: color-mix(in srgb, var(--color-surface) 80%, transparent);
   color: #6e5b62;
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
 }
 
 .kicker svg {
@@ -162,21 +160,21 @@
 .salon h1,
 .moment h1,
 .tea h1 {
-  font-family: "Playfair Display", Georgia, serif;
-  font-weight: 560;
-  letter-spacing: -0.04em;
-  line-height: 0.96;
-  color: #6d3c52;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--color-accent);
 }
 
 .salon h1 {
   margin-top: 22px;
-  font-size: clamp(3.6rem, 5.2vw, 4.8rem);
+  font-size: clamp(4.03rem, 5.8vw, 5.38rem);
 }
 
 .moment h1 {
   margin-top: 18px;
-  font-size: clamp(2.8rem, 3.5vw, 3.7rem);
+  font-size: clamp(3.14rem, 3.9vw, 4.14rem);
   white-space: nowrap;
 }
 
@@ -184,7 +182,7 @@
 .moment h1 em {
   font-style: italic;
   font-weight: 500;
-  color: #6d3c52;
+  color: var(--color-accent);
 }
 
 .lede {
@@ -208,7 +206,7 @@
   height: 14px;
   margin-left: 4px;
   vertical-align: -2px;
-  color: #6d3c52;
+  color: var(--color-accent);
 }
 
 .pager {
@@ -218,14 +216,13 @@
   margin-top: 28px;
   color: #8a7e83;
   font-size: 0.78rem;
-  letter-spacing: 0.12em;
 }
 
 .pager__bar {
   width: 26px;
   height: 7px;
   border-radius: 999px;
-  background: #6d3c52;
+  background: var(--color-accent);
 }
 
 .pager__dot {
@@ -281,7 +278,7 @@
 
 .faces span:nth-child(2) {
   background: #e59aaf;
-  color: #fff;
+  color: var(--color-surface);
 }
 
 .faces span:nth-child(3) {
@@ -325,11 +322,10 @@
   gap: 8px;
   padding: 6px 12px;
   border-radius: 999px;
-  background: #fadcd5;
-  color: #6d3c52;
+  background: var(--color-blush);
+  color: var(--color-accent);
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
 }
 
 .step svg {
@@ -355,8 +351,8 @@
   height: 36px;
   place-items: center;
   border-radius: 50%;
-  background: #fadcd5;
-  color: #6d3c52;
+  background: var(--color-blush);
+  color: var(--color-accent);
 }
 
 .feature__icon svg {
@@ -392,7 +388,6 @@
 }
 
 .moment__edition {
-  letter-spacing: 0.14em;
 }
 
 .tea {
@@ -408,11 +403,10 @@
 .tea__volume {
   padding: 6px 10px;
   border-radius: 999px;
-  background: #fadcd5;
-  color: #6d3c52;
+  background: var(--color-blush);
+  color: var(--color-accent);
   font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
 }
 
 .tea__stage {
@@ -426,8 +420,8 @@
 
 .tea h1 {
   margin-top: 22px;
-  color: #6d3c52;
-  font-size: clamp(3.4rem, 5vw, 4.6rem);
+  color: var(--color-accent);
+  font-size: clamp(3.81rem, 5.6vw, 5.15rem);
 }
 
 .tea__chips {
@@ -443,7 +437,7 @@
   gap: 6px;
   padding: 8px 12px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
   color: #765d67;
   font-size: 0.86rem;
 }
@@ -483,7 +477,7 @@
 .moment a:focus-visible,
 .salon button:focus-visible,
 .moment button:focus-visible {
-  outline: 2px solid #6d3c52;
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 
@@ -503,7 +497,7 @@
 
   .salon h1,
   .moment h1 {
-    font-size: 3rem;
+    font-size: 3.36rem;
     white-space: normal;
   }
 

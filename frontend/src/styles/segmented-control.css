@@ -1,0 +1,114 @@
+.seg {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 4px;
+  border: 1px solid var(--blush);
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--blush) 45%, white);
+  box-shadow: inset 0 1px 2px rgb(from var(--plum) r g b / 0.06);
+}
+
+.seg__pill {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 36px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--wine), var(--berry));
+  box-shadow: 0 6px 16px rgb(from var(--wine) r g b / 0.28);
+  transform: translateX(0);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), width 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.seg__item {
+  position: relative;
+  display: flex;
+}
+
+.seg button {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  height: 36px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--mauve);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 120ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.seg button[aria-checked="true"] {
+  color: var(--blush);
+  font-weight: 600;
+}
+
+.seg button:hover:not([aria-checked="true"]):not(:disabled) {
+  background: color-mix(in srgb, var(--blush) 60%, white);
+  color: var(--wine);
+}
+
+.seg button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.seg button:disabled {
+  color: color-mix(in srgb, var(--mauve) 50%, transparent);
+  cursor: not-allowed;
+}
+
+.seg button:focus-visible {
+  outline: 2px solid var(--berry);
+  outline-offset: 2px;
+}
+
+.seg__item[data-tip]:hover::after,
+.seg__item[data-tip]:focus-within::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 2;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: var(--wine);
+  color: var(--blush);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .seg button {
+    min-width: 44px;
+    padding: 0 12px;
+  }
+
+  .seg__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seg__pill,
+  .seg button {
+    transition: none;
+  }
+}

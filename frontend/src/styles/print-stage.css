@@ -1,0 +1,576 @@
+.print-stage {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+}
+
+.print-stage__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 24px;
+  overflow: auto;
+  background: rgb(from var(--plum) r g b / 0.94);
+}
+
+.print-stage__modal .print-stage {
+  width: min(720px, 100%);
+  margin-inline: auto;
+}
+
+.print-stage__modal-close {
+  justify-self: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--blush);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--blush);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.print-dev__nav {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+
+.print-dev__nav a {
+  color: var(--wine);
+}
+
+.print-dev__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: end;
+  margin: 0 0 20px;
+  padding: 16px;
+  border: 1px solid var(--blush);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--blush) 28%, white);
+}
+
+.print-dev__controls label {
+  display: grid;
+  gap: 6px;
+  color: var(--wine);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.print-dev__controls select {
+  min-height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--blush);
+  border-radius: 10px;
+  background: white;
+  color: var(--plum);
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+
+.print-dev__check {
+  display: inline-flex !important;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.print-dev__key {
+  color: var(--mauve);
+  font-weight: 500;
+}
+
+.maker__replay {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.strip-view__tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.strip-view__replay {
+  position: relative;
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--blush) 55%, transparent);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--blush);
+  cursor: pointer;
+}
+
+.strip-view__replay::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 2;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--plum);
+  color: var(--blush);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(4px);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.strip-view__replay:hover::after,
+.strip-view__replay:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.print-stage__panel {
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  gap: 10px;
+  height: min(860px, calc(100vh - 96px));
+  min-height: 560px;
+  padding: 16px 16px 12px;
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    radial-gradient(48% 42% at 50% 18%, rgb(from var(--blush) r g b / 0.18), transparent 70%),
+    linear-gradient(180deg, var(--plum), var(--charcoal));
+}
+
+.print-stage__scene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 0;
+  height: 100%;
+  overflow: auto;
+}
+
+.print-stage__camera {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  flex: 0 0 auto;
+  width: min(220px, 56%);
+  transform-origin: 50% 60%;
+  background: linear-gradient(180deg, var(--plum), transparent);
+}
+
+.print-camera {
+  width: 100%;
+  line-height: 0;
+}
+
+.print-camera__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.print-camera__flash-burst {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.print-camera__lamp {
+  opacity: 0.3;
+}
+
+.print-camera__glow {
+  opacity: 0;
+  filter: blur(4px);
+}
+
+.print-camera.is-ready .print-camera__lamp {
+  opacity: 1;
+}
+
+.print-camera.is-ready .print-camera__glow {
+  opacity: 0.7;
+}
+
+.print-camera.is-wait .print-camera__lamp {
+  animation: print-blink 700ms ease-in-out infinite;
+}
+
+.print-camera.is-wait .print-camera__glow {
+  animation: print-blink-glow 700ms ease-in-out infinite;
+}
+
+.print-stage__flash-layer {
+  position: absolute;
+  inset: 18% 22% 42% 22%;
+  border-radius: 8px;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* BOX under camera — height from content, clips the sliding strip.
+   flex-shrink: 0 is required: overflow:hidden flex items otherwise min-size to 0 and collapse. */
+.print-stage__box {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  overflow: hidden;
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  margin-top: -10px;
+}
+
+.print-stage__box.is-debug {
+  outline: 2px solid #e11;
+}
+
+/* STRIP in normal flow — only translateY is animated; zoom lives on the inner wrapper */
+.print-stage__strip-slide {
+  position: relative;
+  transform: translateY(-100%);
+  transform-origin: top center;
+  will-change: transform;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.4));
+}
+
+.print-stage__zoom {
+  zoom: var(--s, 0.32);
+}
+
+.print-stage__strip-slide.is-debug {
+  outline: 2px solid #ee0;
+}
+
+.print-stage__strip-slide.is-shown {
+  animation: none !important;
+  transform: none;
+}
+
+.print-stage__strip-slide.is-reduced {
+  transform: none;
+  opacity: 0;
+  animation: print-reduced-in 250ms ease forwards !important;
+}
+
+.print-stage__strip-slide.is-retract {
+  transform: translateY(0);
+}
+
+.print-stage__design {
+  width: 600px;
+  max-width: 600px;
+}
+
+.print-stage__design .photostrip-slot,
+.print-stage__design .photostrip-slot.is-fixed-design {
+  width: 600px;
+  max-width: 600px;
+}
+
+.print-stage__design .photostrip-scale {
+  position: relative;
+  transform: none !important;
+}
+
+/* Developing overlays — opacity only */
+.photostrip-slot.is-print .photostrip__frame {
+  position: relative;
+}
+
+.photostrip__develop {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--blush) 85%, transparent);
+  opacity: 1;
+}
+
+.photostrip[data-color="wine"] .photostrip__develop,
+.photostrip[data-color="night"] .photostrip__develop {
+  background:
+    linear-gradient(color-mix(in srgb, var(--plum) 20%, transparent), color-mix(in srgb, var(--plum) 20%, transparent)),
+    color-mix(in srgb, var(--blush) 85%, transparent);
+}
+
+.print-stage__strip-slide:not(.is-shown):not(.is-reduced) .photostrip__develop {
+  animation: print-develop 900ms linear forwards;
+}
+
+.print-stage__strip-slide [data-print-develop="row-1"],
+.print-stage__strip-slide [data-print-slot="slot-1"] { animation-delay: var(--dev-1, 0ms); }
+.print-stage__strip-slide [data-print-develop="row-2"],
+.print-stage__strip-slide [data-print-slot="slot-2"] { animation-delay: var(--dev-2, 0ms); }
+.print-stage__strip-slide [data-print-develop="row-3"],
+.print-stage__strip-slide [data-print-slot="slot-3"] { animation-delay: var(--dev-3, 0ms); }
+.print-stage__strip-slide [data-print-develop="row-4"],
+.print-stage__strip-slide [data-print-slot="slot-4"] { animation-delay: var(--dev-4, 0ms); }
+.print-stage__strip-slide [data-print-develop="row-5"],
+.print-stage__strip-slide [data-print-slot="slot-5"] { animation-delay: var(--dev-5, 0ms); }
+.print-stage__strip-slide [data-print-develop="row-6"],
+.print-stage__strip-slide [data-print-slot="slot-6"] { animation-delay: var(--dev-6, 0ms); }
+
+.print-stage__strip-slide.is-shown .photostrip__develop {
+  opacity: 0;
+  animation: none;
+}
+
+.photostrip-slot.is-print [data-print-step="header"],
+.photostrip-slot.is-print [data-print-step="footer"] {
+  opacity: 0;
+}
+
+.print-stage__strip-slide:not(.is-shown):not(.is-reduced) [data-print-step="header"] {
+  animation: print-fade-in 300ms ease forwards;
+  animation-delay: var(--dev-header, var(--dev-1, 0ms));
+}
+
+.print-stage__strip-slide:not(.is-shown):not(.is-reduced) [data-print-step="footer"] {
+  animation: print-fade-in 300ms ease forwards;
+  animation-delay: var(--dev-footer, var(--dev-6, 0ms));
+}
+
+.print-stage__strip-slide.is-shown [data-print-step="header"],
+.print-stage__strip-slide.is-shown [data-print-step="footer"] {
+  opacity: 1;
+  animation: none;
+}
+
+.print-stage__debug {
+  position: sticky;
+  bottom: 8px;
+  z-index: 5;
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgb(from var(--plum) r g b / 0.88);
+  color: #f88;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  line-height: 1.35;
+  white-space: pre;
+  pointer-events: none;
+}
+
+.print-stage__copy {
+  margin-top: 16px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.print-stage__copy.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.print-stage__copy h2 {
+  margin: 0;
+  color: var(--blush);
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.print-stage__copy p {
+  margin: 6px 0 0;
+  color: rgb(from var(--blush) r g b / 0.75);
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+
+.print-stage__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 16px;
+  max-width: 520px;
+}
+
+.print-stage__actions > * {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: print-action-in 300ms ease forwards;
+}
+
+.print-stage__actions > *:nth-child(1) { animation-delay: 0ms; }
+.print-stage__actions > *:nth-child(2) { animation-delay: 60ms; }
+.print-stage__actions > *:nth-child(3) { animation-delay: 120ms; }
+.print-stage__actions > *:nth-child(4) { animation-delay: 180ms; }
+
+.print-stage__primary,
+.print-stage__ghost,
+.print-stage__replay {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.print-stage__primary {
+  border: 0;
+  background: var(--blush);
+  color: var(--wine);
+}
+
+.print-stage__ghost {
+  border: 1px solid var(--blush);
+  background: transparent;
+  color: var(--blush);
+}
+
+.print-stage__replay {
+  border: 0;
+  background: transparent;
+  color: rgb(from var(--blush) r g b / 0.9);
+}
+
+.print-stage__error {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.print-stage__error p {
+  margin: 0;
+  color: var(--blush);
+  font-family: var(--font-ui);
+  font-size: 15px;
+}
+
+.print-stage__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.print-stage__skip {
+  border: 0;
+  background: transparent;
+  color: rgb(from var(--blush) r g b / 0.8);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.print-stage__status {
+  margin: 0;
+  color: rgb(from var(--blush) r g b / 0.75);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  text-align: center;
+}
+
+.print-stage.is-error .print-stage__status {
+  display: none;
+}
+
+@keyframes print-develop {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes print-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes print-reduced-in {
+  from { opacity: 0; transform: none; }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes print-retract {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+@keyframes print-blink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes print-blink-glow {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.55; }
+}
+
+@keyframes print-action-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .print-stage__panel {
+    height: min(78vh, 720px);
+    min-height: 480px;
+  }
+
+  .print-stage__camera {
+    width: 160px;
+  }
+
+  .print-stage__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .print-stage__replay {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .print-camera.is-wait .print-camera__lamp,
+  .print-camera.is-wait .print-camera__glow,
+  .print-stage__actions > * {
+    animation: none;
+  }
+
+  .print-stage__actions > * {
+    opacity: 1;
+    transform: none;
+  }
+}
