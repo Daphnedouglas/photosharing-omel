@@ -1,14 +1,19 @@
 export function Switch({ id, checked, onChange, labelledBy, describedBy }) {
+  const on = Boolean(checked);
   return (
     <button
       id={id}
       type="button"
       className="settings__switch"
       role="switch"
-      aria-checked={checked}
+      aria-checked={on ? "true" : "false"}
       aria-labelledby={labelledBy}
       aria-describedby={describedBy}
-      onClick={() => onChange(!checked)}
+      onClick={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onChange(!on);
+      }}
     >
       <span aria-hidden="true" />
     </button>

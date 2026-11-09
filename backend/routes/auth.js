@@ -158,7 +158,15 @@ router.patch("/me", requireAuth, async (req, res) => {
       coverUrl = String(body.coverKey ?? body.cover_url ?? body.coverUrl ?? "");
     }
     if (body.settings && typeof body.settings === "object") {
-      settings = { ...settings, ...body.settings };
+      // Deep-merge nested preference groups so toggles (e.g. backgroundMusic) persist.
+      const next = body.settings;
+      settings = {
+        ...settings,
+        ...next,
+        privacy: { ...(settings.privacy || {}), ...(next.privacy || {}) },
+        notifications: { ...(settings.notifications || {}), ...(next.notifications || {}) },
+        experience: { ...(settings.experience || {}), ...(next.experience || {}) },
+      };
     }
 
     if ("username" in body) {

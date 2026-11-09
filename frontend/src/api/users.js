@@ -94,30 +94,16 @@ function findUserByLogin(store, identifier) {
   return null;
 }
 
+/** One-time flag only — do not rewrite saved experience prefs (that blocked the music toggle). */
 const MUSIC_OFF_MIGRATION = "omel-music-default-off";
 
 function withMusicOffByDefault(store) {
   try {
-    if (typeof window !== "undefined" && window.localStorage.getItem(MUSIC_OFF_MIGRATION) === "1") {
-      return store;
+    if (typeof window !== "undefined" && window.localStorage.getItem(MUSIC_OFF_MIGRATION) !== "1") {
+      window.localStorage.setItem(MUSIC_OFF_MIGRATION, "1");
     }
   } catch { /* ignore */ }
-  const users = (store.users || []).map((user) => {
-    const settings = normalizeSettings(user.settings);
-    return {
-      ...user,
-      settings: {
-        ...settings,
-        experience: { ...settings.experience, backgroundMusic: false },
-        version: (user.settings?.version || 1),
-        updatedAt: user.settings?.updatedAt || user.updatedAt || nowIso(),
-      },
-    };
-  });
-  try {
-    if (typeof window !== "undefined") window.localStorage.setItem(MUSIC_OFF_MIGRATION, "1");
-  } catch { /* ignore */ }
-  return { ...store, users };
+  return store;
 }
 
 async function seedIfNeeded() {
@@ -463,11 +449,41 @@ export async function getSettings(userId) {
   };
 }
 
+/** Write settings into the local session cache immediately (for toggles / music unlock). */
+export function previewSettingsPatch(partial = {}) {
+  const store = readStore();
+  const user = store.users.find((row) => row.id === (store.sessionUserId || member.id));
+  if (!user) return null;
+  const merged = normalizeSettings({
+    privacy: { ...user.settings?.privacy, ...partial.privacy },
+    notifications: { ...user.settings?.notifications, ...partial.notifications },
+    experience: { ...user.settings?.experience, ...partial.experience },
+  });
+  const settings = {
+    ...merged,
+    version: user.settings?.version || 1,
+    updatedAt: user.settings?.updatedAt || nowIso(),
+  };
+  upsertSessionUser({ ...user, settings });
+  return settings;
+}
+
 export async function updateSettings(partial = {}, expected = {}) {
-  const store = await seedIfNeeded();
-  const user = requireUser(store);
+  // Prefer the live API user so local demo-seed migrations cannot clobber prefs mid-save.
+  let user;
+  try {
+    const apiUser = await fetchApiMe();
+    if (apiUser) {
+      upsertSessionUser(apiUser);
+      user = apiUser;
+    }
+  } catch { /* local fallback */ }
+  if (!user) {
+    const store = await seedIfNeeded();
+    user = requireUser(store);
+  }
   const currentVersion = user.settings?.version || 1;
-  if (expected.version != null && expected.version !== currentVersion) {
+  if (expected.version != null && Number(expected.version) !== Number(currentVersion)) {
     throw deny("Your settings changed somewhere else. Refresh and try again.", 409);
   }
   if (expected.updatedAt && user.settings?.updatedAt && expected.updatedAt !== user.settings.updatedAt) {

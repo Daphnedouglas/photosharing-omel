@@ -61,11 +61,15 @@
 .settings__nav {
   position: sticky;
   top: 16px;
+  z-index: 2;
   display: grid;
   gap: 4px;
+  /* Let clicks pass through empty sticky nav space to switches underneath. */
+  pointer-events: none;
 }
 
 .settings__nav a {
+  pointer-events: auto;
   display: block;
   padding: 10px 12px 10px 14px;
   border-left: 3px solid transparent;

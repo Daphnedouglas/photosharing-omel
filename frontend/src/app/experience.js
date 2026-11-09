@@ -162,6 +162,14 @@ export function applyExperience() {
   syncBackgroundMusic();
 }
 
+/** Call from a click handler (e.g. Settings toggle) so autoplay is allowed. */
+export function unlockBackgroundMusic() {
+  musicUnlocked = true;
+  syncBackgroundMusic();
+  if (musicCtx?.state === "suspended") musicCtx.resume().catch(() => {});
+  if (musicAudio?.paused) musicAudio.play().catch(() => {});
+}
+
 export function bootExperience() {
   applyExperience();
   if (typeof window === "undefined") return () => {};
@@ -169,13 +177,7 @@ export function bootExperience() {
   const onMedia = () => applyReduceMotionClass();
   media.addEventListener?.("change", onMedia);
   const unsub = subscribeUsers(() => applyExperience());
-  const unlock = () => {
-    musicUnlocked = true;
-    if (!musicWanted) return;
-    syncBackgroundMusic();
-    if (musicCtx?.state === "suspended") musicCtx.resume().catch(() => {});
-    if (musicAudio?.paused) musicAudio.play().catch(() => {});
-  };
+  const unlock = () => unlockBackgroundMusic();
   window.addEventListener("pointerdown", unlock, { once: true });
   window.addEventListener("keydown", unlock, { once: true });
   return () => {

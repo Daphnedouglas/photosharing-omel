@@ -8,6 +8,7 @@ import {
   ensureUserStore,
   getCurrentUser,
   logout,
+  previewSettingsPatch,
   updateSettings,
 } from "../../api/users";
 import { SettingRow, Switch } from "./settingsShared";
@@ -82,18 +83,34 @@ export default function SettingsPage() {
   async function patchSettings(partial) {
     if (!prefs) return;
     const previous = prefs;
-    setPrefs({
+    const next = {
       ...prefs,
       privacy: { ...prefs.privacy, ...partial.privacy },
       notifications: { ...prefs.notifications, ...partial.notifications },
       experience: { ...prefs.experience, ...partial.experience },
-    });
+    };
+    setPrefs(next);
+    previewSettingsPatch(partial);
+    // Apply on the same user gesture so music can start (autoplay policy).
+    if (partial.experience) {
+      import("../../app/experience").then((mod) => {
+        mod.unlockBackgroundMusic?.();
+        mod.applyExperience();
+      }).catch(() => {});
+    }
     try {
       const saved = await updateSettings(partial, { version: prefs.version, updatedAt: prefs.updatedAt });
       setPrefs(saved);
+      import("../../app/experience").then((mod) => mod.applyExperience()).catch(() => {});
       showSaved();
     } catch (error) {
       setPrefs(previous);
+      previewSettingsPatch({
+        privacy: previous.privacy,
+        notifications: previous.notifications,
+        experience: previous.experience,
+      });
+      import("../../app/experience").then((mod) => mod.applyExperience()).catch(() => {});
       showFail(error?.message || "Couldn't save. Try again.");
     }
   }
