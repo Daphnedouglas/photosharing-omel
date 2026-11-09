@@ -166,6 +166,8 @@ function fromApiUser(apiUser, extras = {}) {
   const fullName = String(extras.fullName || apiUser.fullName || "").trim();
   const displayName = String(apiUser.displayName || "").trim() || fullName;
   const settings = normalizeSettings(apiUser.settings || {});
+  const storedVersion = apiUser.settings?.version;
+  const storedUpdatedAt = apiUser.settings?.updatedAt || null;
   return {
     id: apiUser.id,
     fullName: fullName || displayName,
@@ -184,8 +186,9 @@ function fromApiUser(apiUser, extras = {}) {
     usernameChangedAt: null,
     settings: {
       ...settings,
-      version: Number(apiUser.settings?.version) || 1,
-      updatedAt: apiUser.settings?.updatedAt || apiUser.updatedAt || now,
+      version: storedVersion != null ? Number(storedVersion) : 1,
+      // Keep null when the API never stored updatedAt (avoid inventing a new "now" each fetch).
+      updatedAt: storedUpdatedAt,
     },
     version: 1,
     updatedAt: apiUser.updatedAt || apiUser.createdAt || now,
@@ -483,10 +486,14 @@ export async function updateSettings(partial = {}, expected = {}) {
     user = requireUser(store);
   }
   const currentVersion = user.settings?.version || 1;
-  if (expected.version != null && Number(expected.version) !== Number(currentVersion)) {
-    throw deny("Your settings changed somewhere else. Refresh and try again.", 409);
-  }
-  if (expected.updatedAt && user.settings?.updatedAt && expected.updatedAt !== user.settings.updatedAt) {
+  // Only conflict when the API already stored a version and it differs.
+  // Do not compare updatedAt: fromApiUser invents "now" when missing, which
+  // falsely triggers "changed somewhere else" on every toggle.
+  if (
+    expected.version != null
+    && user.settings?.version != null
+    && Number(expected.version) !== Number(user.settings.version)
+  ) {
     throw deny("Your settings changed somewhere else. Refresh and try again.", 409);
   }
 
